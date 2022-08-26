@@ -8,7 +8,7 @@ function Footer() {
   const FooterInputButton = useRef(null);
 
   return (
-    <footer className="flex flex-col w-full p-5 gap-8 md:px-10">
+    <footer className="flex flex-col w-full py-5 gap-8 mt-auto">
       <div className="flex flex-col items-start gap-10 w-full md:border-t border-[#D8D8D8] md:flex-row-reverse justify-between md:pt-6 md:items-end md:gap-0">
         <div className="flex flex-col w-full gap-1 sm:w-8/12 md:w-80">
           <div className="relative">

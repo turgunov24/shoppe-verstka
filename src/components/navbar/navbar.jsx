@@ -23,7 +23,7 @@ function Navbar() {
   const navbarBottomSearch = useRef(null);
   const navbarBottomSearchButton = useRef(null);
   return (
-    <nav className="relative flex flex-col items-center w-full px-5 py-3 md:px-10 md:pt-5">
+    <nav className="fixed top-0 left-0 z-30 bg-[white] flex flex-col items-center w-full px-5 pt-2 md:pt-10 md:px-10">
       <div className="pb-2 w-full flex items-center justify-between md:border-b border-borderGray ">
         <img src={navbarLogo} className="w-24 md:w-28" />
         <div className="flex items-center gap-5">

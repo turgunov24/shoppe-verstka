@@ -13,8 +13,8 @@ function Sidebar({ toggle }) {
       id="sidebar"
       className={
         toggle
-          ? "absolute top-full right-0 flex flex-col items-center w-full p-5 gap-2 bg-white z-100 sm:w-1/2 md:hidden"
-          : "absolute top-full -right-full flex flex-col items-center w-full p-5 gap-2 bg-white z-100 sm:w-1/2 md:hidden"
+          ? "absolute top-full right-0 flex z-20  flex-col items-center w-full p-5 gap-2 bg-[white] sm:w-1/2 md:hidden"
+          : "absolute top-full -right-full z-20  flex flex-col items-center w-full py-5 gap-2 bg-[white] sm:w-1/2 md:hidden"
       }
     >
       <ul className="flex flex-col w-full gap-5 py-5">
