@@ -1,17 +1,28 @@
+//hooks
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 //icons
 import { AiFillCloseCircle } from "react-icons/ai";
+//additional
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { introAnimation } from "../../data/framer-motion/intro-animation";
 
 function SignIn() {
+  //email-data
   const [signInEmail, setSignInEmail] = useState(null);
   const [signInEmailIcon, setSignInEmailIcon] = useState(false);
+  //password-data
   const [signInPassword, setSignInPassword] = useState(null);
   const [signInPasswordIcon, setSignInPasswordIcon] = useState(false);
 
   return (
-    <div className="flex flex-col items-start gap-5 w-full py-10 sm:w-80">
+    <motion.div
+      variants={introAnimation}
+      initial="hidden"
+      animate="visible"
+      className="flex flex-col items-start gap-5 w-full py-10 sm:w-80"
+    >
       <div className="relative w-full">
         <input
           onChange={(e) => {
@@ -77,8 +88,10 @@ function SignIn() {
       <button id="btn-border-dark" className="w-full py-1 md:mt-10">
         SIGN IN
       </button>
-      <Link to="/forgotten" className="w-full text-center text-sm">Have you forgotten your password?</Link>
-    </div>
+      <Link to="/forgotten" className="w-full text-center text-sm">
+        Have you forgotten your password?
+      </Link>
+    </motion.div>
   );
 }
 

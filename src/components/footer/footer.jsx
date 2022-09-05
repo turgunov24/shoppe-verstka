@@ -18,7 +18,7 @@ function Footer() {
               className="border-b border-black outline-none w-full py-1 placeholder:text-[13px] md:py-0"
             />
             <button className="absolute top-1/2 -translate-y-1/2 right-1">
-              {navLinks.icons[6].arrowIcon}
+              {navLinks.icons.find(icon => icon.name == "arrowIcon").icon}
             </button>
           </div>
           <div className="flex items-center justify-start gap-1 md:hidden">

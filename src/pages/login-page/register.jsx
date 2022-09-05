@@ -1,7 +1,12 @@
+//hooks
 import React, { useState } from "react";
 
 //icons
 import { AiFillCloseCircle } from "react-icons/ai";
+
+//additional
+import { motion } from "framer-motion";
+import { introAnimation } from "../../data/framer-motion/intro-animation";
 
 function Register() {
   //first-name-data
@@ -18,7 +23,12 @@ function Register() {
   const [registerPasswordIcon, setregisterPasswordIcon] = useState(false);
 
   return (
-    <div className="flex flex-col items-start gap-5 w-full py-10 sm:w-80">
+    <motion.div
+      variants={introAnimation}
+      initial="hidden"
+      animate="visible"
+      className="flex flex-col items-start gap-5 w-full py-10 sm:w-80"
+    >
       <div className="relative w-full">
         <input
           onChange={(e) => {
@@ -142,7 +152,7 @@ function Register() {
       <button id="btn-border-dark" className="w-full py-1 md:mt-10">
         REGISTER
       </button>
-    </div>
+    </motion.div>
   );
 }
 

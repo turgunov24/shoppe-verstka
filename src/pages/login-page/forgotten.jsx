@@ -1,16 +1,28 @@
+//hooks
 import React, { useState } from "react";
-import Footer from "../../components/footer/footer";
-import Navbar from "../../components/navbar/navbar";
 
 //icons
 import { AiFillCloseCircle } from "react-icons/ai";
+//components
+import Footer from "../../components/footer/footer";
+import Navbar from "../../components/navbar/navbar";
+
+//additional
+import { motion } from "framer-motion";
+import { introAnimation } from "../../data/framer-motion/intro-animation";
 
 function Forgotten() {
+  //input-data
   const [forgottenInput, setforgottenInput] = useState(null);
   const [forgottenInputIcon, setforgottenInputIcon] = useState(false);
 
   return (
-    <section className="flex flex-col items-center w-full min-h-screen gap-7">
+    <motion.section
+      variants={introAnimation}
+      initial="hidden"
+      animate="visible"
+      className="flex flex-col items-center w-full min-h-screen gap-7"
+    >
       <Navbar />
       <h4 className="text-lg font-bold mt-32 text-center md:text-2xl">
         Have you Forgotten Your Password ?
@@ -52,7 +64,7 @@ function Forgotten() {
         RESET PASSWORD
       </button>
       <Footer />
-    </section>
+    </motion.section>
   );
 }
 

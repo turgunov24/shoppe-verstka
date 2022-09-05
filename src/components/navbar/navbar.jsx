@@ -1,35 +1,50 @@
+//hooks
 import React, { useRef, useState } from "react";
-import "./navbar.css";
-
+import { useNavigate } from "react-router-dom";
+//components
+import Sidebar from "./sidebar";
 //assets
 import navbarLogo from "../../assets/images/navbarLogo.png";
 
 //additional
+import "./navbar.css";
 import { navLinks } from "../../data/navbar-data/navLinks";
-import { IconButton } from "@mui/material";
-import Sidebar from "./sidebar";
 
 function Navbar() {
+  //menu-toggle
   const [navbarToggle, setnavbarToggle] = useState(false);
+  //search-icon-action
   const [searchSize, setSearchSize] = useState(false);
+  //navigate-hook
+  const navigate = useNavigate();
   const searchSizeFunction = () => {
     if (searchSize) {
       setSearchSize(false);
+      navigate("/search-page");
+      console.log(navbarTopSearch.current.value);
     } else {
       setSearchSize(true);
     }
   };
   const navbarTopSearch = useRef(null);
+  //visible < 576px
   const navbarBottomSearch = useRef(null);
   const navbarBottomSearchButton = useRef(null);
   return (
-    <nav className="fixed top-0 left-0 z-30 bg-[white] flex flex-col items-center w-full px-5 pt-2 md:pt-10 md:px-10">
+    <nav className="fixed top-0 left-0 z-30 bg-[white] flex flex-col items-center w-full pb-2 px-5 pt-2 md:pt-10 md:px-10">
       <div className="pb-2 w-full flex items-center justify-between md:border-b border-borderGray ">
         <img src={navbarLogo} className="w-24 md:w-28" />
         <div className="flex items-center gap-5">
           <ul className="hidden md:flex items-center gap-10 px-5 border-r border-black">
             {navLinks.desktopNav.map((navLink) => (
-              <li>{navLink.name}</li>
+              <li
+                onClick={() => {
+                  navigate(navLink.to);
+                }}
+                className="cursor-pointer"
+              >
+                {navLink.name}
+              </li>
             ))}
           </ul>
           <div className="flex items-center gap-2">
@@ -41,6 +56,7 @@ function Navbar() {
               }
             >
               <input
+                ref={navbarTopSearch}
                 type="text"
                 className="outline-none border-b border-black bg-[transparent] px-5 w-full h-full"
               />
@@ -48,22 +64,22 @@ function Navbar() {
                 onClick={searchSizeFunction}
                 className="h-full px-3 py-2 text-xl flex items-center justify-center"
               >
-                {navLinks.icons[2].searchIcon}
+                {navLinks.icons.find(icon => icon.name == "searchIcon").icon}
               </button>
             </div>
             <button className="px-3 py-2 text-xl">
-              {navLinks.icons[0].shopIcon}
+              {navLinks.icons.find(icon => icon.name == "shopIcon").icon}
             </button>
             <button className="hidden md:block px-3 py-2 text-xl">
-              {navLinks.icons[1].userIcon}
+              {navLinks.icons.find(icon => icon.name == "userIcon").icon}
             </button>
             <button
               onClick={() => setnavbarToggle(!navbarToggle)}
               className="px-3 py-2 text-xl md:hidden"
             >
               {navbarToggle
-                ? navLinks.icons[4].closeIcon
-                : navLinks.icons[3].menuIcon}
+                ? navLinks.icons.find(icon => icon.name == "closeIcon").icon
+                : navLinks.icons.find(icon => icon.name == "menuIcon").icon}
             </button>
           </div>
         </div>
@@ -89,7 +105,7 @@ function Navbar() {
           ref={navbarBottomSearchButton}
           className="absolute top-0 -right-full text-xl h-full px-2 opacity-0"
         >
-          {navLinks.icons[2].searchIcon}
+          {navLinks.icons.find(icon => icon.name == "searchIcon").icon}
         </button>
       </div>
       <Sidebar toggle={navbarToggle} />

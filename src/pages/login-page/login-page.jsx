@@ -1,10 +1,13 @@
+//hooks
 import React, { useState } from "react";
-import Footer from "../../components/footer/footer";
-import Navbar from "../../components/navbar/navbar";
-import { Route, Routes,useNavigate } from "react-router-dom";
-//
+//components
 import Register from "./register";
 import SignIn from "./sign-in";
+import Footer from "../../components/footer/footer";
+import Navbar from "../../components/navbar/navbar";
+//additonal
+import { Route, Routes,useNavigate } from "react-router-dom";
+
 
 function LoginPage() {
   const [loginToggle, setLoginToggle] = useState("signIn");
@@ -17,7 +20,7 @@ function LoginPage() {
         <div
           onClick={() => {
             setLoginToggle("signIn")
-            navigate("/login")
+            navigate("/")
           }}
           className="relative z-20 flex items-center justify-center py-1 w-1/2"
         >
@@ -26,7 +29,7 @@ function LoginPage() {
         <div
           onClick={() => {
             setLoginToggle("register")
-            navigate("/login/register")
+            navigate("/register")
           }}
           className="relative z-20 flex items-center justify-center py-1 w-1/2"
         >

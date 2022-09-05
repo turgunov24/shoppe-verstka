@@ -52,3 +52,9 @@ span {
   border-radius: 4px;
   background-color: var(--text-black);
 }
+
+
+/* scrollbar */
+::-webkit-scrollbar{
+  width: 5px;
+}

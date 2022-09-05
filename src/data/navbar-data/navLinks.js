@@ -1,9 +1,11 @@
 import { IoIosSearch, IoIosLogOut } from "react-icons/io";
-import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { GrClose } from "react-icons/gr";
-import { BsCart2 } from "react-icons/bs";
+import { BsCart2, BsEye } from "react-icons/bs";
 import { CgArrowLongRight } from "react-icons/cg";
+import { GiSettingsKnobs } from "react-icons/gi"
+import { MdOutlineArrowBackIosNew } from "react-icons/md"
 import {
   RiLinkedinFill,
   RiFacebookFill,
@@ -15,59 +17,92 @@ export const navLinks = {
   mobileNav: [
     {
       name: "Home",
+      to: "/",
     },
     {
       name: "Shop",
+      to: "/shop-page",
     },
     {
       name: "About",
+      to: "/about-page",
     },
     {
       name: "Blog",
+      to: "/blog-page",
     },
     {
       name: "Help",
+      to: "/help-page",
     },
     {
       name: "Contact",
+      to: "/contact-page",
     },
     {
       name: "Search",
+      to: "/search-page",
     },
   ],
   desktopNav: [
     {
       name: "Shop",
+      to: "/shop-page",
     },
     {
       name: "Blog",
+      to: "/blog-page",
     },
     {
       name: "Our Story",
+      to: "/story-page",
     },
   ],
   icons: [
     {
-      shopIcon: <BsCart2 />,
+      name:"shopIcon",
+      icon:<BsCart2 />
     },
     {
-      userIcon: <AiOutlineUser />,
+      name:"userIcon",
+      icon:<AiOutlineUser />
     },
     {
-      searchIcon: <IoIosSearch />,
+      name:"searchIcon",
+      icon:<IoIosSearch />
     },
     {
-      menuIcon: <HiOutlineMenuAlt3 />,
+      name:"menuIcon",
+      icon: <HiOutlineMenuAlt3 />,
     },
     {
-      closeIcon: <GrClose />,
+      name:"filterIcon",
+      icon: <GiSettingsKnobs />,
     },
     {
-      logOuticon: <IoIosLogOut />,
+      name:"closeIcon",
+      icon: <GrClose />,
     },
     {
-      arrowIcon: <CgArrowLongRight />,
+      name:"logOutIcon",
+      icon: <IoIosLogOut />,
     },
+    {
+      name:"arrowIcon",
+      icon: <CgArrowLongRight />,
+    },
+    {
+      name:"heartIcon",
+      icon: <AiOutlineHeart />,
+    },
+    {
+      name:"eyeIcon",
+      icon: <BsEye />,
+    },
+    {
+      name:"arrowDropdown",
+      icon:<MdOutlineArrowBackIosNew />
+    }
   ],
   socialMediaIcons: [
     {
