@@ -1,10 +1,32 @@
+
+
+
+
+
 #shop-page-filter-input-range::-webkit-slider-thumb {
-  -webkit-appearance: none;
+  -webkit-appearance: none !important;
   width: 20px !important;
   background-color: #000 !important;
 }
 input[type="range"]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
   overflow: hidden;
-  border: 1px solid red;
+  
 }
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance: none !important;
+  background-color: #000 !important;
+}
+
+
+
+/* @media screen and (max-width:768px){
+  #shop-page-filter-component{
+    width: 100% !important;
+  }
+}
+@media screen and (min-width:768px){
+  #shop-page-filter-component{
+    width: 192px !important;
+  }
+} */

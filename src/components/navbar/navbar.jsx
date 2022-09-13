@@ -1,6 +1,8 @@
 //hooks
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+//icons
+import { BsCheckCircleFill } from "react-icons/bs";
 //components
 import Sidebar from "./sidebar";
 //assets
@@ -30,9 +32,24 @@ function Navbar() {
   //visible < 576px
   const navbarBottomSearch = useRef(null);
   const navbarBottomSearchButton = useRef(null);
+  /////navbar-alert////////
+  const [alert, setalert] = useState("");
   return (
-    <nav className="fixed top-0 left-0 z-30 bg-[white] flex flex-col items-center w-full pb-2 px-5 pt-2 md:pt-10 md:px-10">
-      <div className="pb-2 w-full flex items-center justify-between md:border-b border-borderGray ">
+    <nav className="fixed top-0 left-0 z-30 bg-[white] flex flex-col items-center w-full px-5 pt-2 md:pt-10 md:px-10">
+      {/* <div className="absolute top-full left-1/2 -translate-x-1/2 w-full px-5 md:px-10">
+        <div className="border border-[#A18A68] flex items-center p-3 gap-5">
+          <h5>
+            <BsCheckCircleFill />
+          </h5>
+          <h6 className="text-sm">
+          The item added to your Shopping bag.
+          </h6>
+          <h5 className="ml-auto">
+            VIEW CART
+          </h5>
+        </div>
+      </div> */}
+      <div className="pb-3 w-full flex items-center justify-between md:border-b border-borderGray ">
         <img src={navbarLogo} className="w-24 md:w-28" />
         <div className="flex items-center gap-5">
           <ul className="hidden md:flex items-center gap-10 px-5 border-r border-black">
@@ -64,27 +81,27 @@ function Navbar() {
                 onClick={searchSizeFunction}
                 className="h-full px-3 py-2 text-xl flex items-center justify-center"
               >
-                {navLinks.icons.find(icon => icon.name == "searchIcon").icon}
+                {navLinks.icons.find((icon) => icon.name == "searchIcon").icon}
               </button>
             </div>
             <button className="px-3 py-2 text-xl">
-              {navLinks.icons.find(icon => icon.name == "shopIcon").icon}
+              {navLinks.icons.find((icon) => icon.name == "shopIcon").icon}
             </button>
             <button className="hidden md:block px-3 py-2 text-xl">
-              {navLinks.icons.find(icon => icon.name == "userIcon").icon}
+              {navLinks.icons.find((icon) => icon.name == "userIcon").icon}
             </button>
             <button
               onClick={() => setnavbarToggle(!navbarToggle)}
               className="px-3 py-2 text-xl md:hidden"
             >
               {navbarToggle
-                ? navLinks.icons.find(icon => icon.name == "closeIcon").icon
-                : navLinks.icons.find(icon => icon.name == "menuIcon").icon}
+                ? navLinks.icons.find((icon) => icon.name == "closeIcon").icon
+                : navLinks.icons.find((icon) => icon.name == "menuIcon").icon}
             </button>
           </div>
         </div>
       </div>
-      <div className="relative w-full overflow-hidden sm:hidden">
+      <div className="relative w-full pb-2 overflow-hidden sm:hidden">
         <input
           onChange={() => {
             navbarBottomSearchButton.current.style.right = "0";
@@ -105,7 +122,7 @@ function Navbar() {
           ref={navbarBottomSearchButton}
           className="absolute top-0 -right-full text-xl h-full px-2 opacity-0"
         >
-          {navLinks.icons.find(icon => icon.name == "searchIcon").icon}
+          {navLinks.icons.find((icon) => icon.name == "searchIcon").icon}
         </button>
       </div>
       <Sidebar toggle={navbarToggle} />

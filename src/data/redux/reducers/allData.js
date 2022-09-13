@@ -1,10 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getData = createAsyncThunk("alldata/getData", async (payload) => {
-  const response = await axios.get("https://fakestoreapi.com/products");
-  return response.data;
-});
+// export const getData = createAsyncThunk("alldata/getData", async () => {
+//   return fetch("https://fakestoreapi.com/products").then(response => response.json())
+// });
 
 export const AllData = createSlice({
   name: "alldata",
@@ -222,22 +221,27 @@ export const AllData = createSlice({
         rating: { rate: 3.6, count: 145 },
       },
     ],
+    selectedData:[]
   },
-  // extraReducersReducers: {
-  //   [getData.pending]: (state, { payload }) => {
-  //     state.status = payload.status
-  //   },
-  //   [getData.fulfilled]: (state, { payload }) => {
-  //     state.status = "success";
-  //     state.data = payload;
-  //   },
-  //   [getData.rejected]: (state, { payload }) => {
-  //     state.status = payload.status;
-  //   },
-  // },
   reducers: {
-    getAll: () => {},
+    selectedProduct: (state, action) => {
+      state.selectedData =  state.data.filter((product) => product.id == action.payload);
+    },
   },
-});
 
+  //   extraReducersReducers: {
+  //     [getData.pending]: (state, { payload }) => {
+  //       state.status = "pending"
+  //     },
+  //     [getData.fulfilled]: (state, { payload }) => {
+  //       state.status = "success";
+  //       state.data = payload;
+  //     },
+  //     [getData.rejected]: (state, { payload }) => {
+  //       state.status = "rejected"
+  //   },
+
+  // }
+});
+export const actions = AllData.actions
 export default AllData.reducer;

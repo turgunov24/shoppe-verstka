@@ -10,20 +10,26 @@ import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
 //additional
 import "./home-page.css";
-import { getData } from "../../data/redux/reducers/allData";
 import { navLinks } from "../../data/navbar-data/navLinks";
 import { motion } from "framer-motion";
 import { introAnimation } from "../../data/framer-motion/intro-animation";
+import { actions } from "../../data/redux/reducers/allData";
+   
+  console.log(localStorage.getItem("user"));
+
 
 function HomePage() {
   //selector-hook
   const products = useSelector((data) => data.getAllData.data);
+  //dispatch-hook
+  const dispatch = useDispatch();
   //navigate-hook
   const navigate = useNavigate();
   //dispatch-hook
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch(getData());
   //filter-data
   const [viewAll, setViewAll] = useState("View all");
+
 
   return (
     <motion.section
@@ -79,6 +85,7 @@ function HomePage() {
                 <h6
                   onClick={() => {
                     navigate("/product-page");
+                    dispatch(actions.selectedProduct(product.id))
                   }}
                   className="text-lg font-bold"
                 >
@@ -87,6 +94,7 @@ function HomePage() {
                 <h5
                   onClick={() => {
                     navigate("/product-page");
+                    dispatch(actions.selectedProduct(product.id))
                   }}
                   className="text-sm"
                 >
@@ -115,18 +123,19 @@ function HomePage() {
                     id="absolute-home-page-card"
                     className="absolute top-0 left-0 w-full h-full flex items-center justify-center gap-4"
                   >
-                    <h6 className="text-lg ">{navLinks.icons[0].shopIcon}</h6>
+                    <h6 className="text-lg ">{navLinks.icons.find(icon => icon.name == "shopIcon").icon}</h6>
                     <h6 className="text-lg ">
-                      {navLinks.icons[navLinks.icons.length - 1].eyeIcon}
+                      {navLinks.icons.find(icon => icon.name == "eyeIcon").icon}
                     </h6>
                     <h6 className="text-lg ">
-                      {navLinks.icons[navLinks.icons.length - 2].heartIcon}
+                      {navLinks.icons.find(icon => icon.name == "heartIcon").icon}
                     </h6>
                   </div>
                 </div>
                 <h6
                   onClick={() => {
                     navigate("/product-page");
+                    dispatch(actions.selectedProduct(product.id))
                   }}
                   className="text-lg font-bold"
                 >
@@ -135,6 +144,7 @@ function HomePage() {
                 <h5
                   onClick={() => {
                     navigate("/product-page");
+                    dispatch(actions.selectedProduct(product.id))
                   }}
                   className="text-sm"
                 >
@@ -176,6 +186,7 @@ function HomePage() {
                   <h6
                     onClick={() => {
                       navigate("/product-page");
+                      dispatch(actions.selectedProduct(product.id))
                     }}
                     className="text-lg font-bold"
                   >
@@ -184,6 +195,7 @@ function HomePage() {
                   <h5
                     onClick={() => {
                       navigate("/product-page");
+                      dispatch(actions.selectedProduct(product.id))
                     }}
                     className="text-sm"
                   >
