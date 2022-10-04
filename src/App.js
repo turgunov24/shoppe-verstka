@@ -10,15 +10,12 @@ import Forgotten from "./pages/login-page/forgotten";
 import ProductPage from "./pages/product-page/product-page";
 import ShopPage from "./pages/shop-page/shop-page";
 import ContactPage from "./pages/contact-page/contact-page";
+import ProfilePage from "./pages/profile-page/profile-page";
+import PrivacyPolicyPage from "./pages/privacy-policy-page/privacy-policy-page";
+import ErrorPage from "./pages/error-page/error-page";
+import ShoppingCartPage from "./pages/shopping-cart-page/shopping-cart-page";
 
 function App() {
-  // const sendData = () => {
-  //   addDoc(usersCollection, {
-  //     name: "murodjon",
-  //     age: 19,
-  //   });
-  // };
-
   return (
     <BrowserRouter>
       <div className="App w-full h-max overflow-hidden flex flex-col px-5 md:px-10">
@@ -30,6 +27,10 @@ function App() {
           <Route path="/product-page" element={<ProductPage />} />
           <Route path="/shop-page" element={<ShopPage />} />
           <Route path="/contact-page" element={<ContactPage />} />
+          <Route path="/profile-page" element={<ProfilePage />} />
+          <Route path="/privacy-policy-page" element={<PrivacyPolicyPage />} />
+          <Route path="/shopping-cart-page" element={<ShoppingCartPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -62,7 +62,7 @@ function ShopPage() {
     useState(null);
     const [isFiltered, setIsFiltered] = useState(
       filterComponentInputData == null
-        ? products.filter((pro) => pro.price > 200)
+        ? products.filter((pro) => pro.price > 100)
         : products
     );
     // console.log(filterComponentInputData);
@@ -86,13 +86,13 @@ function ShopPage() {
           Filters
         </h5>
       </div>
-      <div className="flex flex-col flex-grow md:flex-row gap-2 justify-between">
+      <div className="flex flex-col flex-grow md:flex-row gap-2 ">
         <div
           id="shop-page-filter-component"
           className={
             shopPageFilterToggle
-              ? "flex flex-col gap-3 md:w-56"
-              : "h-0 overflow-hidden  md:flex flex-col gap-3 w-56"
+              ? "flex flex-col gap-3 w-full md:w-56"
+              : "h-0 w-full overflow-hidden  md:flex flex-col gap-3 md:w-56"
           }
         >
           <div className="relative">
@@ -296,12 +296,12 @@ function ShopPage() {
           </div>
         </div>
         <div className="flex gap-3 w-full flex-wrap py-5 md:py-0 md:px-5 md:gap-10">
-          {isFiltered.map((product, index) => (
+          {isFiltered.map((product) => (
             <motion.div
               variants={introAnimation}
               initial="hidden"
               animate="visible"
-              key={index}
+              key={product.id}
               className="flex flex-col items-start gap-2 w-40 sm:w-52 md:w-64"
             >
               <div

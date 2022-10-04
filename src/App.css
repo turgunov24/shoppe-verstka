@@ -52,9 +52,22 @@ span {
   border-radius: 4px;
   background-color: var(--text-black);
 }
+#btn-border-white {
+  color: var(--text-black);
+  border: 1px solid var(--text-black);
+  border-radius: 6px;
+  background-color: var(--text-white);
+}
 
 
 /* scrollbar */
 ::-webkit-scrollbar{
   width: 5px;
+}
+::-webkit-scrollbar-track{
+  background-color: #fff;
+}
+::-webkit-scrollbar-thumb{
+  background-color: var(--text-gray);
+  border-radius: 10px;
 }

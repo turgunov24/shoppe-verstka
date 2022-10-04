@@ -42,7 +42,7 @@ export default function HomepageCategorySwiper({ data,categoryName }) {
         className=" w-full h-12 mt-28 md:hidden"
       >
         {uniqueCategory.map((category) => (
-          <SwiperSlide onClick={() => categoryName(category)} className="border border-[#D8D8D8] flex items-center justify-center rounded-md">
+          <SwiperSlide key={category.id} onClick={() => categoryName(category)} className="border border-[#D8D8D8] flex items-center justify-center rounded-md">
             {category}
           </SwiperSlide>
         ))}

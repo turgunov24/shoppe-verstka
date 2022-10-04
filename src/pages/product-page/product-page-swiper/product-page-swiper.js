@@ -23,12 +23,26 @@ export default function ProductPageSwiper() {
           hide: true,
         }}
         modules={[Scrollbar]}
-        className="product-page-swiper border w-full h-72 mr-auto md:w-96 md:h-full"
+        className="product-page-swiper w-full h-72 mr-auto md:min-h-[400px]"
       >
         {selectedProduct &&
-          selectedProduct.map((product) => <SwiperSlide>
-            <img src={product.image} className="w-full h-full object-contain" />
-          </SwiperSlide>)}
+          selectedProduct.map((product) => (
+            <SwiperSlide className="h-full">
+              <img
+                src={product.image}
+                className="w-full h-full object-contain"
+              />
+            </SwiperSlide>
+          ))}
+        {selectedProduct &&
+          selectedProduct.map((product) => (
+            <SwiperSlide className="h-full">
+              <img
+                src={product.image}
+                className="w-full h-full object-contain"
+              />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </>
   );

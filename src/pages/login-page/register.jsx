@@ -9,8 +9,8 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { introAnimation } from "../../data/framer-motion/intro-animation";
 import { dataBase } from "../../data/firebase/firebase-setup";
-import { collection,getDocs } from "firebase/firestore";
-import { async } from "@firebase/util";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+import { Checkbox } from "@mui/material";
 
 function Register() {
   //useNavigate-hook
@@ -34,18 +34,31 @@ function Register() {
 
   //////firebase-data////
   const usersCollection = collection(dataBase, "login-base");
+  const [isChecking, setIsChecking] = useState("REGISTER");
   const [usersList, setUsersList] = useState(null);
-  console.log(usersList);
-
+  //post
+  const postData = async () => {
+    setIsChecking("ADDING...");
+    await addDoc(usersCollection, {
+      email: registerEmail,
+      firstName: registerFirstName,
+      id: `user${registerPassword}`,
+      lastName: registerLastName,
+      password: registerPassword,
+      displayName: `${registerFirstName}`,
+      shoppingbag:[]
+    });
+    setIsChecking("ADDED");
+    const data = await getDocs(usersCollection);
+    setUsersList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
   useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(usersCollection);
-      console.log(data);
-      setUsersList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getUsers()
-
-  }, []);
+    if (usersList) {
+      const user = usersList.find(user => user.email == registerEmail)
+      localStorage.setItem("user",JSON.stringify(user))
+      navigate("/home-page")
+    }
+  }, [usersList]);
 
   const allInputs = [
     registerFirstNameInputRef,
@@ -53,7 +66,7 @@ function Register() {
     registerEmailInputRef,
     registerPasswordInputRef,
   ];
-
+  ////form-submit/////
   const signUpFormSubmitted = (e) => {
     e.preventDefault();
     if (
@@ -62,7 +75,7 @@ function Register() {
       registerEmail &&
       registerPassword
     ) {
-      navigate("/home-page");
+      postData();
     } else {
       allInputs.forEach((e) => {
         if (e.current.value == "") {
@@ -98,6 +111,7 @@ function Register() {
           className="border-b border-[#D8D8D8] outline-none w-full py-1"
         />
         <button
+          type="button"
           onClick={() => {
             setregisterFirstName("");
             setregisterFirstNameIcon(false);
@@ -132,6 +146,7 @@ function Register() {
           className="border-b border-[#D8D8D8] outline-none w-full py-1"
         />
         <button
+          type="button"
           onClick={() => {
             setregisterLastName("");
             setregisterLastNameIcon(false);
@@ -161,11 +176,12 @@ function Register() {
               "1px solid #D8D8D8";
           }}
           value={registerEmail}
-          type="text"
+          type="email"
           placeholder="Email"
           className="border-b border-[#D8D8D8] outline-none w-full py-1"
         />
         <button
+          type="button"
           onClick={() => {
             setregisterEmail("");
             setregisterEmailIcon(false);
@@ -195,11 +211,12 @@ function Register() {
               "1px solid #D8D8D8";
           }}
           value={registerPassword}
-          type="text"
+          type="password"
           placeholder="Password"
           className="border-b border-[#D8D8D8] outline-none w-full py-1"
         />
         <button
+          type="button"
           onClick={() => {
             setregisterPassword("");
             setregisterPasswordIcon(false);
@@ -218,11 +235,20 @@ function Register() {
         </button>
       </div>
       <div className="flex gap-2 items-center">
-        <input type="checkbox" id="remember-password" />
+        {/* <input type="checkbox" id="remember-password" /> */}
+        <Checkbox
+          // {...label}
+          color="default"
+          id="remember-password"
+        />
         <label htmlFor="remember-password">Remember me</label>
       </div>
-      <button id="btn-border-dark" className="w-full py-1 md:mt-10">
-        REGISTER
+      <button
+        type="submit"
+        id="btn-border-dark"
+        className="w-full py-1 md:mt-10"
+      >
+        {isChecking}
       </button>
     </motion.form>
   );

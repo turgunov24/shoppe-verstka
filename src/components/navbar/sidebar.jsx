@@ -6,10 +6,8 @@ import { navLinks } from "../../data/navbar-data/navLinks";
 
 function Sidebar({ toggle }) {
   //navigate-hook
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-
-    
   return (
     <nav
       id="sidebar"
@@ -20,18 +18,31 @@ function Sidebar({ toggle }) {
       }
     >
       <ul className="flex flex-col w-full gap-5 py-5">
-        {navLinks.mobileNav.map((navLink) => (
-          <li onClick={()=>{
-            navigate(navLink.to)
-          }} className="text-xl">{navLink.name}</li>
+        {navLinks.mobileNav.map((navLink, index) => (
+          <li
+            key={index}
+            onClick={() => {
+              navigate(navLink.to);
+            }}
+            className="text-xl"
+          >
+            {navLink.name}
+          </li>
         ))}
       </ul>
       <ul className="flex flex-col w-full gap-5 py-5">
-        <li className="text-xl flex gap-2 items-center">
-          {navLinks.icons.find(icon => icon.name == "userIcon").icon}My account
+        <li
+          onClick={() => navigate("/profile-page")}
+          className="text-xl flex gap-2 items-center"
+        >
+          {navLinks.icons.find((icon) => icon.name == "userIcon").icon}My
+          account
         </li>
-        <li className="text-xl flex gap-2 items-center">
-          {navLinks.icons.find(icon => icon.name == "logOutIcon").icon}Log out
+        <li
+          onClick={() => navigate("/login")}
+          className="text-xl flex gap-2 items-center"
+        >
+          {navLinks.icons.find((icon) => icon.name == "logOutIcon").icon}Log out
         </li>
       </ul>
     </nav>

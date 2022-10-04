@@ -14,8 +14,7 @@ import { navLinks } from "../../data/navbar-data/navLinks";
 import { motion } from "framer-motion";
 import { introAnimation } from "../../data/framer-motion/intro-animation";
 import { actions } from "../../data/redux/reducers/allData";
-   
-  console.log(localStorage.getItem("user"));
+
 
 
 function HomePage() {
@@ -53,12 +52,12 @@ function HomePage() {
       </div>
       <div className="flex flex-wrap items-start w-full gap-3 md:gap-10">
         {viewAll == "View some"
-          ? products.map((product, index) => (
+          ? products.map((product) => (
               <motion.div
                 variants={introAnimation}
                 initial="hidden"
                 animate="visible"
-                key={index}
+                key={product.id}
                 className="flex flex-col items-start gap-2 w-40 sm:w-52 md:w-64"
               >
                 <div
@@ -103,12 +102,12 @@ function HomePage() {
               </motion.div>
             ))
           : viewAll == "View all"
-          ? products.slice(0, 7).map((product, index) => (
+          ? products.slice(0, 7).map((product) => (
               <motion.div
                 variants={introAnimation}
                 initial="hidden"
                 animate="visible"
-                key={index}
+                key={product.id}
                 className="flex flex-col items-start gap-2 w-40 sm:w-52 md:w-64"
               >
                 <div
@@ -154,12 +153,12 @@ function HomePage() {
             ))
           : products
               .filter((product) => product.category == viewAll)
-              .map((product, index) => (
+              .map((product) => (
                 <motion.div
                   variants={introAnimation}
                   initial="hidden"
                   animate="visible"
-                  key={index}
+                  key={product.id}
                   className="flex flex-col items-start gap-2 w-40 sm:w-52 md:w-64"
                 >
                   <div

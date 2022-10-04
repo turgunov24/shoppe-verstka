@@ -33,7 +33,7 @@ function Navbar() {
   const navbarBottomSearch = useRef(null);
   const navbarBottomSearchButton = useRef(null);
   /////navbar-alert////////
-  const [alert, setalert] = useState("");
+
   return (
     <nav className="fixed top-0 left-0 z-30 bg-[white] flex flex-col items-center w-full px-5 pt-2 md:pt-10 md:px-10">
       {/* <div className="absolute top-full left-1/2 -translate-x-1/2 w-full px-5 md:px-10">
@@ -53,8 +53,9 @@ function Navbar() {
         <img src={navbarLogo} className="w-24 md:w-28" />
         <div className="flex items-center gap-5">
           <ul className="hidden md:flex items-center gap-10 px-5 border-r border-black">
-            {navLinks.desktopNav.map((navLink) => (
+            {navLinks.desktopNav.map((navLink, index) => (
               <li
+                key={index}
                 onClick={() => {
                   navigate(navLink.to);
                 }}
@@ -84,7 +85,7 @@ function Navbar() {
                 {navLinks.icons.find((icon) => icon.name == "searchIcon").icon}
               </button>
             </div>
-            <button className="px-3 py-2 text-xl">
+            <button onClick={() => navigate("/shopping-cart-page")} className="px-3 py-2 text-xl">
               {navLinks.icons.find((icon) => icon.name == "shopIcon").icon}
             </button>
             <button className="hidden md:block px-3 py-2 text-xl">
