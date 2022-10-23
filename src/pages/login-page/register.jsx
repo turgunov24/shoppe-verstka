@@ -42,11 +42,24 @@ function Register() {
     await addDoc(usersCollection, {
       email: registerEmail,
       firstName: registerFirstName,
-      id: `user${registerPassword}`,
+      id:`user${registerPassword}`,
       lastName: registerLastName,
       password: registerPassword,
       displayName: `${registerFirstName}`,
-      shoppingbag:[]
+      companyName:null,
+      country:null,
+      streetAddress:null,
+      postCode:null,
+      city:null,
+      phone:null,
+      shoppingbag:[],
+      order:[],
+      device:{
+        name:navigator.appName,
+        version:navigator.appVersion,
+        platform:navigator.platform,
+        languages:navigator.languages,
+      }
     });
     setIsChecking("ADDED");
     const data = await getDocs(usersCollection);

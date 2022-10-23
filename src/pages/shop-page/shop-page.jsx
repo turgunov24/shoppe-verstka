@@ -1,6 +1,6 @@
 //hooks
-import React, { useState } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 //components
 import Navbar from "../../components/navbar/navbar";
@@ -11,11 +11,12 @@ import ShopPageFilter from "../../components/shop-page-filter/shop-page-filter";
 import { motion } from "framer-motion";
 import { introAnimation } from "../../data/framer-motion/intro-animation";
 import { navLinks } from "../../data/navbar-data/navLinks";
-import { actions} from "../../data/redux/reducers/allData"
+import { actions } from "../../data/redux/reducers/allData";
 
 function ShopPage() {
   //all-data
   const products = useSelector((data) => data.getAllData.data);
+  const [data, setData] = useState(products);
   //use-dispatch-hook
   const dispatch = useDispatch();
   //useNavigate-hook
@@ -25,7 +26,6 @@ function ShopPage() {
   const [shopPageFilterToggle, setShopPageFilterToggle] = useState(false);
 
   //////////////filtered-data//////////////////
-
 
   ////////////////////////-----------shop-page-filter-component--------////////////////////////
 
@@ -56,16 +56,42 @@ function ShopPage() {
   const [inStockInput, setInStockInput] = useState(false);
   ///////radio-inputs-height-toggle
   const [radioInputsHeight, setRadioInputsHeight] = useState(false);
-
-  //filter-component-search-input-data
-  const [filterComponentInputData, setFilterComponentInputData] =
-    useState(null);
-    const [isFiltered, setIsFiltered] = useState(
-      filterComponentInputData == null
-        ? products.filter((pro) => pro.price > 100)
-        : products
-    );
-    // console.log(filterComponentInputData);
+  //FILTER
+  //search-function
+  const [searchInputValue, setSearchInputValue] = useState(null);
+  const searchFunction = () => {
+    if (searchInputValue) {
+      let filteredData = [];
+      products.forEach((product) => {
+        if (
+          product.category
+            .toLowerCase()
+            .includes(searchInputValue.toLowerCase()) ||
+          product.title.toLowerCase().includes(searchInputValue.toLowerCase())
+        ) {
+          filteredData.push(product);
+        }
+      });
+      setData(filteredData.length != 0 ? filteredData : products);
+    } else {
+      setData(products);
+    }
+  };
+  //shop-by
+  useEffect(() => {
+    if (shopInputData != "Shop By") {
+      if (shopInputData == "Cheapest") {
+        // console.log(data.sort((a, b) => a.price < b.price));
+        console.log(1);
+      } else if (shopInputData == "Expensive") {
+        // console.log(data.sort((a, b) => a.price > b.price));
+        console.log(2);
+      }
+    } else {
+      setData(products);
+    }
+  }, [shopInputData]);
+  console.log(data);
   return (
     <motion.section
       variants={introAnimation}
@@ -86,23 +112,26 @@ function ShopPage() {
           Filters
         </h5>
       </div>
-      <div className="flex flex-col flex-grow md:flex-row gap-2 ">
+      <div className="flex flex-col flex-grow md:flex-row gap-2">
         <div
           id="shop-page-filter-component"
           className={
             shopPageFilterToggle
               ? "flex flex-col gap-3 w-full md:w-56"
-              : "h-0 w-full overflow-hidden  md:flex flex-col gap-3 md:w-56"
+              : "h-0 w-full overflow-hidden  md:flex flex-col gap-3 md:w-56 md:h-max"
           }
         >
           <div className="relative">
             <input
-              onChange={(e) => setFilterComponentInputData(e.target.value)}
+              onChange={(e) => setSearchInputValue(e.target.value)}
               type="text"
               className="outline-none border-b border-[#D8D8D8] bg-[transparent] pr-6 py-3 w-full h-full"
               placeholder="Search..."
             />
-            <button className="absolute top-1/2 -translate-y-1/2 right-0 text-2xl border-none outline-none md:text-lg">
+            <button
+              onClick={searchFunction}
+              className="absolute top-1/2 -translate-y-1/2 right-0 text-2xl border-none outline-none md:text-lg"
+            >
               {navLinks.icons.find((icon) => icon.name == "searchIcon").icon}
             </button>
           </div>
@@ -296,7 +325,7 @@ function ShopPage() {
           </div>
         </div>
         <div className="flex gap-3 w-full flex-wrap py-5 md:py-0 md:px-5 md:gap-10">
-          {isFiltered.map((product) => (
+          {data.map((product) => (
             <motion.div
               variants={introAnimation}
               initial="hidden"
@@ -336,8 +365,7 @@ function ShopPage() {
               <h6
                 onClick={() => {
                   navigate("/product-page");
-                  dispatch(actions.selectedProduct(product.id))
-                  
+                  dispatch(actions.selectedProduct(product.id));
                 }}
                 className="text-lg font-bold"
               >
@@ -346,8 +374,7 @@ function ShopPage() {
               <h5
                 onClick={() => {
                   navigate("/product-page");
-                  dispatch(actions.selectedProduct(product.id))
-                  
+                  dispatch(actions.selectedProduct(product.id));
                 }}
                 className="text-sm"
               >

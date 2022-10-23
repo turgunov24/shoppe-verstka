@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { BsCheckCircleFill } from "react-icons/bs";
 //components
 import Sidebar from "./sidebar";
+import ShoppingCart from "../shopping-cart/shopping-cart";
 //assets
 import navbarLogo from "../../assets/images/navbarLogo.png";
 
@@ -15,6 +16,8 @@ import { navLinks } from "../../data/navbar-data/navLinks";
 function Navbar() {
   //menu-toggle
   const [navbarToggle, setnavbarToggle] = useState(false);
+  //shopping-cart-toggle
+  const [shoppingCartToggle, setShoppingCartToggle] = useState(false);
   //search-icon-action
   const [searchSize, setSearchSize] = useState(false);
   //navigate-hook
@@ -36,19 +39,6 @@ function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 z-30 bg-[white] flex flex-col items-center w-full px-5 pt-2 md:pt-10 md:px-10">
-      {/* <div className="absolute top-full left-1/2 -translate-x-1/2 w-full px-5 md:px-10">
-        <div className="border border-[#A18A68] flex items-center p-3 gap-5">
-          <h5>
-            <BsCheckCircleFill />
-          </h5>
-          <h6 className="text-sm">
-          The item added to your Shopping bag.
-          </h6>
-          <h5 className="ml-auto">
-            VIEW CART
-          </h5>
-        </div>
-      </div> */}
       <div className="pb-3 w-full flex items-center justify-between md:border-b border-borderGray ">
         <img src={navbarLogo} className="w-24 md:w-28" />
         <div className="flex items-center gap-5">
@@ -85,10 +75,16 @@ function Navbar() {
                 {navLinks.icons.find((icon) => icon.name == "searchIcon").icon}
               </button>
             </div>
-            <button onClick={() => navigate("/shopping-cart-page")} className="px-3 py-2 text-xl">
+            <button
+              onClick={() => setShoppingCartToggle(true)}
+              className="px-3 py-2 text-xl"
+            >
               {navLinks.icons.find((icon) => icon.name == "shopIcon").icon}
             </button>
-            <button className="hidden md:block px-3 py-2 text-xl">
+            <button
+              onClick={() => navigate("/profile-page")}
+              className="hidden md:block px-3 py-2 text-xl"
+            >
               {navLinks.icons.find((icon) => icon.name == "userIcon").icon}
             </button>
             <button
@@ -127,6 +123,10 @@ function Navbar() {
         </button>
       </div>
       <Sidebar toggle={navbarToggle} />
+      <ShoppingCart
+        setToggle={setShoppingCartToggle}
+        toggle={shoppingCartToggle}
+      />
     </nav>
   );
 }

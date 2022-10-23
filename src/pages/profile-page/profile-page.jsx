@@ -1,15 +1,20 @@
 //hooks
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 //components
 import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
 import ProfilePageTab from "../../components/profile-page-tab/profile-page-tab";
 //icons
 import { AiFillCloseCircle } from "react-icons/ai";
+import { BsCheckCircleFill } from "react-icons/bs";
+import { CircularProgress } from "@mui/material";
 //addtional
 import { motion } from "framer-motion";
 import { introAnimation } from "../../data/framer-motion/intro-animation";
 import { dataBase } from "../../data/firebase/firebase-setup";
+import { actions } from "../../data/redux/reducers/allData";
 import {
   doc,
   updateDoc,
@@ -19,6 +24,8 @@ import {
 } from "firebase/firestore";
 
 function ProfilePage() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   //profile-page-tab-index-value
   const [profilePageTabValue, setProfilePageTabValue] = useState(0);
   ///////////////profile-page-account-details-data//////////
@@ -69,7 +76,7 @@ function ProfilePage() {
   /////////firebase-data
   const usersCollection = collection(dataBase, "login-base");
   const [usersList, setUsersList] = useState(null);
-  console.log(usersList);
+
   //account-details-form-submit-function
   const [wantDisplayName, setWantDisplayName] = useState(false);
   const [wantPassword, setWantPassword] = useState(false);
@@ -93,7 +100,10 @@ function ProfilePage() {
       localStorage.setItem(
         "user",
         JSON.stringify(
-          usersList.find((user) => user.email == accountDetailsEmail)
+          usersList.find(
+            (user) =>
+              user.email == JSON.parse(localStorage.getItem("user").email)
+          )
         )
       );
   }, [usersList]);
@@ -133,7 +143,7 @@ function ProfilePage() {
       setWantPassword(true);
     } else {
       accountDetailsInputsRefs.forEach((input) => {
-        if (input.current.value == '') {
+        if (input.current.value == "") {
           input.current.style.borderBottom = "1px solid red";
         }
       });
@@ -282,6 +292,32 @@ function ProfilePage() {
     }
   };
 
+  //------------------ORDERS------------------//
+  const [orders, setOrders] = useState(null);
+  const getOrders = async () => {
+    setOrders(JSON.parse(localStorage.getItem("user")).order);
+  };
+  useEffect(() => {
+    profilePageTabValue == 1 && getOrders();
+  }, [profilePageTabValue]);
+
+
+  // //calculate-price
+  const [totalPrice, setTotalPrice] = useState(0);
+  console.log(totalPrice);
+  let calculatePrice = (number) => {
+    let price = 0;
+    number.forEach((product) => {
+      if (product.orderCount == 1) {
+        price += product.price;
+      } else {
+        price += product.orderCount * product.price;
+      }
+    });
+    setTotalPrice(price);
+    console.log(price);
+    return price
+  };
   return (
     <section className="flex flex-col gap-5 w-full min-h-screen">
       <Navbar />
@@ -315,7 +351,80 @@ function ProfilePage() {
           </div>
         </motion.div>
       ) : profilePageTabValue == 1 ? (
-        ""
+        orders ? (
+          orders.length == 0 ? (
+            <div className="w-full border-t border-[#A18A68] bg-gray1 flex items-center justify-between p-3 gap-3 mt-5 md:px-7">
+              <h6 className="hidden md:block text-sm">
+                No order has been made yet
+              </h6>
+              <h6 className="text-sm md:hidden">No orders</h6>
+              <h5
+                onClick={() => navigate("/shop-page")}
+                className="hidden md:block"
+              >
+                BROWSE PRODUCT
+              </h5>
+              <h5 onClick={() => navigate("/shop-page")} className="md:hidden">
+                BROWSE
+              </h5>
+            </div>
+          ) : (
+            <motion.div
+              variants={introAnimation}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-col w-full"
+            >
+              <div className="hidden md:flex items-center justify-between border-b-[1.5px] border-[#707070] w-full pt-1 pb-3">
+                <h6 className="flex justify-start w-1/5">ORDER NUMBER</h6>
+                <h6 className="flex justify-start w-1/5">DATE</h6>
+                <h6 className="flex justify-start w-1/5">STATUS</h6>
+                <h6 className="flex justify-start w-1/5">TOTAL</h6>
+                <h6 className="flex justify-start w-1/5">ACTIONS</h6>
+              </div>
+              {orders.map((order) => (
+                <div className="flex flex-col w-full gap-2 py-3 border-b border-[#D8D8D8] md:flex-row justify-between md:border-none">
+                  <p className="flex justify-start w-full md:w-1/5">
+                    {order.orderNumber}
+                  </p>
+                  <p className="flex justify-start w-full md:w-1/5">{`${
+                    order.orderDate.split(" ", 2)[
+                      order.orderDate.split(" ", 2).length - 1
+                    ]
+                  } ${
+                    order.orderDate.split(" ", 3)[
+                      order.orderDate.split(" ", 3).length - 1
+                    ]
+                  },${
+                    order.orderDate.split(" ", 4)[
+                      order.orderDate.split(" ", 4).length - 1
+                    ]
+                  }`}</p>
+                  <p className="flex justify-start w-full md:w-1/5">
+                    Delivered
+                  </p>
+                  <p className="flex justify-start w-full md:w-1/5">
+                    {() => {
+                      console.log(order);
+                      calculatePrice(order.order)
+                    }}
+                  </p>
+                  <h5
+                    onClick={() => {
+                      dispatch(actions.selectedOrder(order));
+                      navigate("/checkout-confirm-page");
+                    }}
+                    className="flex justify-start w-full md:w-1/5"
+                  >
+                    View Order
+                  </h5>
+                </div>
+              ))}
+            </motion.div>
+          )
+        ) : (
+          <CircularProgress />
+        )
       ) : profilePageTabValue == 2 ? (
         ""
       ) : profilePageTabValue == 3 ? (

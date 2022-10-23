@@ -24,7 +24,7 @@ export default function HomePageSwiper({ data }) {
       >
         {data.map((item, index) => (
           <SwiperSlide key={index} className="relative">
-            <img src={item.image} className="object-cover w-full h-full duration-1000" />
+            <img src={item.image} className="object-contain w-full h-full duration-1000" />
             <div className="text-start absolute top-0 left-0 flex flex-col items-start justify-end gap-3 w-full h-full z-10 py-7 px-4 md:justify-center md:gap-5">
               <span className="text-2xl md:text-3xl">
                 {item.title.split(" ", 3).map((i) => i)}

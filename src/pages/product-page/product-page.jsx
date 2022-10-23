@@ -263,7 +263,11 @@ function ProductPage() {
         ],
       });
 
-      updateLocalstorage();
+      const getData = async () => {
+        const data = await getDocs(shoppingBagCollection);
+        setShoppingBag(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      };
+      getData()
       setaddToCartButtonText("ADDED");
     } else if (bag == "push") {
       setaddToCartButtonText("ADDING");
@@ -329,6 +333,20 @@ function ProductPage() {
       }
     }
   }, [usersData]);
+  //update-localstorage-for-empty-shopping-bag
+  const updateLocalstorageForEmptyBag = () => {
+    localStorage.setItem(
+      "user",
+      JSON.stringify(
+        shoppingBag.find(
+          (user) => user.email == JSON.parse(localStorage.getItem("user")).email
+        )
+      )
+    );
+  };
+  useEffect(() => {
+    shoppingBag && updateLocalstorageForEmptyBag();
+  }, [shoppingBag]);
   return (
     <motion.section
       variants={introAnimation}

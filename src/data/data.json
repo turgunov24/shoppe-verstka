@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "style": "classic",
+    "category": "accessories",
+    "image": "https://i.pinimg.com/originals/98/f4/2d/98f42d9a07622ec332a9b3f8ffb7a008.jpg",
+    "season": "spring",
+    "fashion": 19,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 2,
+    "style": "classic",
+    "category": "accessories",
+    "image": "https://ae01.alicdn.com/kf/H2eed25e851fa48eba1aceff1cc1238b40/14.jpg",
+    "season": "autumn",
+    "fashion": 19,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 3,
+    "style": "street",
+    "category": "accessories",
+    "image": "https://ae01.alicdn.com/kf/HTB1s37ubS7PL1JjSZFHq6AciXXaj/Cool-all-match-new-simple-Baby-Child-Girls-jewelry-necklace-beads-accessories.jpg",
+    "season": "summer",
+    "fashion": 19,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 4,
+    "style": "street",
+    "category": "accessories",
+    "image": "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1604949626-pink-fuzzy-earmuffs-1604949621.jpg",
+    "season": "winter",
+    "fashion": 19,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 5,
+    "style": "classic",
+    "category": "men",
+    "image": "https://s.wsj.net/public/resources/images/B3-AY776_ONESHE_M_20180628104840.jpg",
+    "season": "spring",
+    "fashion": 19,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 6,
+    "style": "classic",
+    "category": "men",
+    "image": "https://avatars.mds.yandex.net/i?id=5cac3648675e3cfddaafef1f44753d4e-5714674-images-thumbs&n=13",
+    "season": "autumn",
+    "fashion": 19,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 7,
+    "style": "street",
+    "category": "men",
+    "image": "https://i.pinimg.com/originals/47/77/b5/4777b542e7d86e43ca01cbb8847b0400.jpg",
+    "season": "summer",
+    "fashion": 18,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 8,
+    "style": "street",
+    "category": "men",
+    "image": "https://avatars.mds.yandex.net/i?id=a047afb7a4a5bff3265f62835fc4d4a4-5877226-images-thumbs&n=13",
+    "season": "winter",
+    "fashion": 19,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 9,
+    "style": "classic",
+    "category": "woman",
+    "image": "https://avatars.mds.yandex.net/i?id=43d7c7271f4040f84e7eff3d5fe0e641-4349461-images-thumbs&n=13",
+    "season": "spring",
+    "fashion": 19,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 10,
+    "style": "classic",
+    "category": "woman",
+    "image": "https://avatars.mds.yandex.net/i?id=66565bfa0471e253b295da28365bf00d-6212368-images-thumbs&n=13",
+    "season": "autumn",
+    "fashion": 18,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 11,
+    "style": "street",
+    "category": "woman",
+    "image": "https://avatars.mds.yandex.net/i?id=2907610e03458fab117d9fee4e489081-4417086-images-thumbs&n=13",
+    "season": "summer",
+    "fashion": 19,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 12,
+    "style": "street",
+    "category": "woman",
+    "image": "https://avatars.mds.yandex.net/i?id=435a3033b2ce11203966d9c274a7950b-5233472-images-thumbs&n=13",
+    "season": "winter",
+    "fashion": 19,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 13,
+    "style": "classic",
+    "category": "child",
+    "image": "https://family.by/uploads/posts/2015-04/1430251921_stilyagi.jpg",
+    "season": "spring",
+    "fashion": 18,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 14,
+    "style": "classic",
+    "category": "child",
+    "image": "https://vdecret.com/wp-content/uploads/post-19-original-2048x1145.jpg",
+    "season": "autumn",
+    "fashion": 18,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 15,
+    "style": "street",
+    "category": "child",
+    "image": "https://posterchildmag.com/wp-content/uploads/2015/05/0239.jpg",
+    "season": "summer",
+    "fashion": 19,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  },
+  {
+    "id": 16,
+    "style": "street",
+    "category": "child",
+    "image": "https://sportishka.com/uploads/posts/2022-02/thumbs/1645624448_47-sportishka-com-p-zimnii-lager-turizm-krasivo-foto-54.jpg",
+    "season": "winter",
+    "fashion": 19,
+    "shortDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration...z",
+    "longDescription": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc."
+  }
+]
