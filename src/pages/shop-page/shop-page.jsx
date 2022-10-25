@@ -91,7 +91,52 @@ function ShopPage() {
       setData(products);
     }
   }, [shopInputData]);
-  console.log(data);
+  //range-input
+  const [emptyInputRange, setEmptyInputRange] = useState(false);
+  const [inputRangeChanging, setInputRangeChanging] = useState(false);
+  useEffect(() => {
+    if (inputRangeChanging) {
+      let filteredData = [];
+      products.forEach((product) => {
+        if (
+          Math.floor(product.price) > inputRangeOne &&
+          Math.floor(product.price) < inputRangeTwo
+        ) {
+          filteredData.push(product);
+        }
+      });
+      if (filteredData.length != 0) {
+        setData(filteredData);
+        setEmptyInputRange(false);
+      } else {
+        setData([]);
+        setEmptyInputRange(true);
+      }
+    }
+  }, [inputRangeOne]);
+  useEffect(() => {
+    if (inputRangeChanging) {
+      let filteredData = [];
+      products.forEach((product) => {
+        if (
+          Math.floor(product.price) > inputRangeOne &&
+          Math.floor(product.price) < inputRangeTwo
+        ) {
+          filteredData.push(product);
+        }
+      });
+      if (filteredData.length != 0) {
+        setData(filteredData);
+        setEmptyInputRange(false);
+      } else {
+        setData([]);
+        setEmptyInputRange(true);
+      }
+    }
+  }, [inputRangeTwo]);
+  useEffect(() => {
+    !inputRangeChanging && setData(products);
+  }, [inputRangeChanging]);
   return (
     <motion.section
       variants={introAnimation}
@@ -262,7 +307,11 @@ function ShopPage() {
           <div className="flex flex-col gap-5 mt-5">
             <div classNa me="border flex items-center justify-center">
               <input
-                onChange={(e) => setInputRangeOne(e.target.value)}
+                onChange={(e) => {
+                  setInputRangeChanging(true);
+                  setInputRangeOne(e.target.value);
+                  e.target.value == 0 && setInputRangeChanging(false);
+                }}
                 id="shop-page-filter-input-range"
                 type="range"
                 value={inputRangeOne}
@@ -271,7 +320,11 @@ function ShopPage() {
                 className="w-1/2"
               />
               <input
-                onChange={(e) => setInputRangeTwo(e.target.value)}
+                onChange={(e) => {
+                  setInputRangeChanging(true);
+                  setInputRangeTwo(e.target.value);
+                  e.target.value == 500 && setInputRangeChanging(false);
+                }}
                 id="shop-page-filter-input-range"
                 type="range"
                 value={inputRangeTwo}
@@ -382,6 +435,7 @@ function ShopPage() {
               </h5>
             </motion.div>
           ))}
+          {emptyInputRange && <p>Not found</p>}
         </div>
       </div>
       <Footer />
