@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import { introAnimation } from "../../data/framer-motion/intro-animation";
 import { dataBase } from "../../data/firebase/firebase-setup";
 import { actions } from "../../data/redux/reducers/allData";
+import { navLinks } from "../../data/navbar-data/navLinks";
 import {
   doc,
   updateDoc,
@@ -301,7 +302,6 @@ function ProfilePage() {
     profilePageTabValue == 1 && getOrders();
   }, [profilePageTabValue]);
 
-
   // //calculate-price
   const [totalPrice, setTotalPrice] = useState(0);
   console.log(totalPrice);
@@ -316,8 +316,337 @@ function ProfilePage() {
     });
     setTotalPrice(price);
     console.log(price);
-    return price
+    return price;
   };
+  //---------------ADDRESSES---------------//
+  const [billingAddressToggle, setBillingAddressToggle] = useState(false);
+  const [shippingAddressToggle, setShippingAddressToggle] = useState(false);
+  //---------------SHIPPING-ADDRESS-INPUTS---------------//
+  //first-name-input-data
+  const [billingAddressFirstName, setBillingAddressFirstName] = useState(null);
+  const [billingAddressFirstNameIcon, setBillingAddressFirstNameIcon] =
+    useState(false);
+  const billingAddressFirstNameRef = useRef("");
+  //last-name-input-data
+  const [billingAddressLastName, setBillingAddressLastName] = useState(null);
+  const [billingAddressLastNameIcon, setBillingAddressLastNameIcon] =
+    useState(false);
+  const billingAddressLastNameRef = useRef("");
+  //company-name-input-data
+  const [billingAddressCompanyName, setBillingAddressCompanyName] =
+    useState(null);
+  const [billingAddressCompanyNameIcon, setBillingAddressCompanyNameIcon] =
+    useState(false);
+  const billingAddressCompanyNameRef = useRef("");
+  //street-address-input-data
+  const [billingAddressStreetAddress, setBillingAddressStreetAddress] =
+    useState(null);
+  const [billingAddressStreetAddressIcon, setBillingAddressStreetAddressIcon] =
+    useState(false);
+  const billingAddressStreetAddressRef = useRef("");
+  //post-code-input-data
+  const [billingAddressPostCode, setBillingAddressPostCode] = useState(null);
+  const [billingAddressPostCodeIcon, setBillingAddressPostCodeIcon] =
+    useState(false);
+  const billingAddressPostCodeRef = useRef("");
+  //city-input-data
+  const [billingAddressCity, setBillingAddressCity] = useState(null);
+  const [billingAddressCityIcon, setBillingAddressCityIcon] = useState(false);
+  const billingAddressCityRef = useRef("");
+  //phone-input-data
+  const [billingAddressPhone, setBillingAddressPhone] = useState(null);
+  const [billingAddressPhoneIcon, setBillingAddressPhoneIcon] = useState(false);
+  const billingAddressPhoneRef = useRef("");
+  //email-input-data
+  const [billingAddressEmail, setBillingAddressEmail] = useState(null);
+  const [billingAddressEmailIcon, setBillingAddressEmailIcon] = useState(false);
+  const billingAddressEmailRef = useRef("");
+  //country-input-data
+  const [
+    billingAddressCountryDropdownToggle,
+    setBillingAddressCountryDropdownToggle,
+  ] = useState(false);
+  const [
+    billingAddressCountryDropdownIcon,
+    setBillingAddressCountryDropdownIcon,
+  ] = useState(false);
+  const [billingAddressSelectedCountry, setBillingAddressSelectedCountry] =
+    useState(null);
+  const [billingAddressFoundedCountry, setBillingAddressFoundedCountry] =
+    useState(null);
+  const [billingAddressCountry, setBillingAddressCountry] = useState(null);
+  const [billingAddressCountryIcon, setBillingAddressCountryIcon] =
+    useState(false);
+  const billingAddressCountryRef = useRef("");
+  //---------------SHIPPING-ADDRESS-INPUTS---------------//
+  //first-name-input-data
+  const [shippingAddressFirstName, setShippingAddressFirstName] =
+    useState(null);
+  const [shippingAddressFirstNameIcon, setShippingAddressFirstNameIcon] =
+    useState(false);
+  const shippingAddressFirstNameRef = useRef("");
+  //last-name-input-data
+  const [shippingAddressLastName, setShippingAddressLastName] = useState(null);
+  const [shippingAddressLastNameIcon, setShippingAddressLastNameIcon] =
+    useState(false);
+  const shippingAddressLastNameRef = useRef("");
+  //company-name-input-data
+  const [shippingAddressCompanyName, setShippingAddressCompanyName] =
+    useState(null);
+  const [shippingAddressCompanyNameIcon, setShippingAddressCompanyNameIcon] =
+    useState(false);
+  const shippingAddressCompanyNameRef = useRef("");
+  //street-address-input-data
+  const [shippingAddressStreetAddress, setShippingAddressStreetAddress] =
+    useState(null);
+  const [
+    shippingAddressStreetAddressIcon,
+    setShippingAddressStreetAddressIcon,
+  ] = useState(false);
+  const shippingAddressStreetAddressRef = useRef("");
+  //post-code-input-data
+  const [shippingAddressPostCode, setShippingAddressPostCode] = useState(null);
+  const [shippingAddressPostCodeIcon, setShippingAddressPostCodeIcon] =
+    useState(false);
+  const shippingAddressPostCodeRef = useRef("");
+  //city-input-data
+  const [shippingAddressCity, setShippingAddressCity] = useState(null);
+  const [shippingAddressCityIcon, setShippingAddressCityIcon] = useState(false);
+  const shippingAddressCityRef = useRef("");
+  //phone-input-data
+  const [shippingAddressPhone, setShippingAddressPhone] = useState(null);
+  const [shippingAddressPhoneIcon, setShippingAddressPhoneIcon] =
+    useState(false);
+  const shippingAddressPhoneRef = useRef("");
+  //email-input-data
+  const [shippingAddressEmail, setShippingAddressEmail] = useState(null);
+  const [shippingAddressEmailIcon, setShippingAddressEmailIcon] =
+    useState(false);
+  const shippingAddressEmailRef = useRef("");
+  //country-input-data
+  const [
+    shippingAddressCountryDropdownToggle,
+    setShippingAddressCountryDropdownToggle,
+  ] = useState(false);
+  const [
+    shippingAddressCountryDropdownIcon,
+    setShippingAddressCountryDropdownIcon,
+  ] = useState(false);
+  const [shippingAddressSelectedCountry, setShippingAddressSelectedCountry] =
+    useState(null);
+  const [shippingAddressFoundedCountry, setShippingAddressFoundedCountry] =
+    useState(null);
+  const [shippingAddressCountry, setShippingAddressCountry] = useState(null);
+  const [shippingAddressCountryIcon, setShippingAddressCountryIcon] =
+    useState(false);
+  const shippingAddressCountryRef = useRef("");
+  //input-refs
+  const [billingInputRefs, setBillingInputRefs] = useState([
+    billingAddressFirstNameRef,
+    billingAddressLastNameRef,
+    billingAddressCompanyNameRef,
+    billingAddressStreetAddressRef,
+    billingAddressPostCodeRef,
+    billingAddressCityRef,
+    billingAddressPhoneRef,
+    billingAddressEmailRef,
+  ]);
+  const [shippingInputRefs, setShippingInputRefs] = useState([
+    shippingAddressFirstNameRef,
+    shippingAddressLastNameRef,
+    shippingAddressCompanyNameRef,
+    shippingAddressStreetAddressRef,
+    shippingAddressPostCodeRef,
+    shippingAddressCityRef,
+    shippingAddressPhoneRef,
+    shippingAddressEmailRef,
+  ]);
+  //---------------UPDATING-BILLING-ADDRESSES--------------//
+  const [
+    billingAddressSaveChangesButtonText,
+    setBillingAddressSaveChangesButtonText,
+  ] = useState("SAVE CHANGES");
+  //GET_COUNTRY
+  const [allCountry, setAllCountry] = useState(null);
+  const getCountry = async () => {
+    const URL = "https://restcountries.com/v3.1/all";
+    fetch(URL)
+      .then((res) => res.json())
+      .then((json) => setAllCountry(json));
+  };
+  useEffect(() => {
+    getCountry();
+  }, []);
+  //searching-country
+  const billingAddressSearchCountry = (e) => {
+    const founded = allCountry.filter((country) =>
+      country.name.common.toLowerCase().includes(e.toLowerCase())
+    );
+    setBillingAddressFoundedCountry(founded);
+  };
+  //update-localstorage
+  const updateLocalStorageForAddresses = async () => {
+    const data = await getDocs(usersCollection);
+    const res = await data.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    const findedUser = res.find(
+      (user) => user.email == JSON.parse(localStorage.getItem("user")).email
+    );
+    localStorage.setItem("user", JSON.stringify(findedUser));
+    setBillingAddressSaveChangesButtonText("UPDATED");
+    setTimeout(() => {
+      setBillingAddressSaveChangesButtonText("SAVE CHANGES");
+      setshippingAddressSaveChangesButtonText("SAVE CHANGES");
+
+      navigate("/home-page");
+    }, 1000);
+  };
+  //update-firebase
+  const updateDataForBillingAddress = async () => {
+    setBillingAddressSaveChangesButtonText("UPDATING...");
+    const userDoc = doc(
+      dataBase,
+      "login-base",
+      JSON.parse(localStorage.getItem("user")).id
+    );
+    await updateDoc(userDoc, {
+      companyName: billingAddressCompanyName,
+      country: billingAddressSelectedCountry,
+      streetAddress: billingAddressStreetAddress,
+      postCode: billingAddressPostCode,
+      city: billingAddressCity,
+      phone: billingAddressPhone,
+    });
+    updateLocalStorageForAddresses();
+  };
+  //update-billing-address
+  const updateBillingAddressFunction = () => {
+    const emptyInputToggle = billingInputRefs.every(
+      (input) => input.current.value != ""
+    );
+    if (emptyInputToggle && billingAddressSelectedCountry) {
+      if (
+        billingAddressEmail == JSON.parse(localStorage.getItem("user")).email &&
+        billingAddressFirstName ==
+          JSON.parse(localStorage.getItem("user")).firstName &&
+        billingAddressLastName ==
+          JSON.parse(localStorage.getItem("user")).lastName
+      ) {
+        updateDataForBillingAddress();
+      } else {
+        if (
+          billingAddressEmail != JSON.parse(localStorage.getItem("user")).email
+        ) {
+          billingAddressEmailRef.current.value = "ERROR EMAIL";
+        }
+        if (
+          billingAddressFirstName !=
+          JSON.parse(localStorage.getItem("user")).firstName
+        ) {
+          billingAddressFirstNameRef.current.value = "ERROR FIRST NAME";
+        }
+        if (
+          billingAddressLastName !=
+          JSON.parse(localStorage.getItem("user")).lastName
+        ) {
+          billingAddressLastNameRef.current.value = "ERROR LAST NAME";
+        }
+      }
+    } else {
+      if (!emptyInputToggle) {
+        billingInputRefs.forEach((input) => {
+          if (input.current.value == "") {
+            input.current.style.borderBottom = "1px solid red";
+          }
+        });
+      }
+      if (!billingAddressSelectedCountry) {
+        setBillingAddressCountryDropdownToggle(true);
+        billingAddressCountryRef.current.style.borderBottom = "1px solid red";
+      }
+    }
+  };
+  //--------------UPDATING-SHIPPING-ADDRESSES--------------//
+  const [
+    shippingAddressSaveChangesButtonText,
+    setshippingAddressSaveChangesButtonText,
+  ] = useState("SAVE CHANGES");
+  //searching-country
+  const shippingAddressSearchCountry = (e) => {
+    const founded = allCountry.filter((country) =>
+      country.name.common.toLowerCase().includes(e.toLowerCase())
+    );
+    setShippingAddressFoundedCountry(founded);
+  };
+  //update-firebase
+  const updateDataForShippingAddress = async () => {
+    setshippingAddressSaveChangesButtonText("UPDATING...");
+    const userDoc = doc(
+      dataBase,
+      "login-base",
+      JSON.parse(localStorage.getItem("user")).id
+    );
+    await updateDoc(userDoc, {
+      companyName: shippingAddressCompanyName,
+      country: shippingAddressSelectedCountry,
+      streetAddress: shippingAddressStreetAddress,
+      postCode: shippingAddressPostCode,
+      city: shippingAddressCity,
+      phone: shippingAddressPhone,
+    });
+    updateLocalStorageForAddresses();
+  };
+  //update-billing-address
+  const updateShippingAddressFunction = () => {
+    const emptyInputToggle = shippingInputRefs.every(
+      (input) => input.current.value != ""
+    );
+    if (emptyInputToggle && shippingAddressSelectedCountry) {
+      if (
+        shippingAddressEmail ==
+          JSON.parse(localStorage.getItem("user")).email &&
+        shippingAddressFirstName ==
+          JSON.parse(localStorage.getItem("user")).firstName &&
+        shippingAddressLastName ==
+          JSON.parse(localStorage.getItem("user")).lastName
+      ) {
+        updateDataForShippingAddress();
+      } else {
+        if (
+          shippingAddressEmail != JSON.parse(localStorage.getItem("user")).email
+        ) {
+          shippingAddressEmailRef.current.value = "ERROR EMAIL";
+        }
+        if (
+          shippingAddressFirstName !=
+          JSON.parse(localStorage.getItem("user")).firstName
+        ) {
+          shippingAddressFirstNameRef.current.value = "ERROR FIRST NAME";
+        }
+        if (
+          shippingAddressLastName !=
+          JSON.parse(localStorage.getItem("user")).lastName
+        ) {
+          shippingAddressLastNameRef.current.value = "ERROR LAST NAME";
+        }
+      }
+    } else {
+      if (!emptyInputToggle) {
+        shippingInputRefs.forEach((input) => {
+          if (input.current.value == "") {
+            input.current.style.borderBottom = "1px solid red";
+          }
+        });
+      }
+      if (!shippingAddressSelectedCountry) {
+        setShippingAddressCountryDropdownToggle(true);
+        shippingAddressCountryRef.current.style.borderBottom = "1px solid red";
+      }
+    }
+  };
+
   return (
     <section className="flex flex-col gap-5 w-full min-h-screen">
       <Navbar />
@@ -406,7 +735,7 @@ function ProfilePage() {
                   <p className="flex justify-start w-full md:w-1/5">
                     {() => {
                       console.log(order);
-                      calculatePrice(order.order)
+                      calculatePrice(order.order);
                     }}
                   </p>
                   <h5
@@ -428,7 +757,798 @@ function ProfilePage() {
       ) : profilePageTabValue == 2 ? (
         ""
       ) : profilePageTabValue == 3 ? (
-        ""
+        <motion.div
+          variants={introAnimation}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col gap-5 w-full"
+        >
+          <h6>
+            The following addresses will be used on the checkout page by default
+          </h6>
+          <div className="flex flex-col gap-5 w-full md:flex-row justify-between">
+            <div className="flex flex-col gap-2 w-full md:w-[400px] lg:w-[450px] xl:w-[500px]">
+              <h4 className="text-lg font-bold">Billing address</h4>
+              <div className="flex flex-col items-start gap-2 w-full">
+                <h5
+                  onClick={() => {
+                    setBillingAddressToggle(!billingAddressToggle);
+                    setShippingAddressToggle(false);
+                  }}
+                  className="font-bold cursor-pointer"
+                >
+                  ADD
+                </h5>
+                <p className={billingAddressToggle ? "hidden" : ""}>
+                  You have not set up this type of address yet
+                </p>
+              </div>
+              {billingAddressToggle && (
+                <motion.div
+                  variants={introAnimation}
+                  initial="hidden"
+                  animate="visible"
+                  className="flex flex-col w-full gap-5 md:gap-7"
+                >
+                  <div className="flex flex-col w-full gap-5 md:flex-row md:gap-2">
+                    {/* FIRST_NAME_INPUT */}
+                    <div className="relative w-full">
+                      <input
+                        ref={billingAddressFirstNameRef}
+                        onChange={(e) => {
+                          billingAddressFirstNameRef.current.style.borderBottom =
+                            "";
+                          setBillingAddressFirstName(e.target.value);
+                          e.target.value == ""
+                            ? setBillingAddressFirstNameIcon(false)
+                            : setBillingAddressFirstNameIcon(true);
+                        }}
+                        value={billingAddressFirstName}
+                        type="text"
+                        placeholder="First Name *"
+                        className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                      />
+                      <button
+                        onClick={() => {
+                          setBillingAddressFirstName("");
+                          setBillingAddressFirstNameIcon(false);
+                        }}
+                        className={
+                          billingAddressFirstNameIcon
+                            ? "absolute top-1/2 -translate-y-1/2 right-0"
+                            : "hidden"
+                        }
+                      >
+                        <p>
+                          <AiFillCloseCircle />
+                        </p>
+                      </button>
+                    </div>
+                    {/* LAST_NAME_INPUT */}
+                    <div className="relative w-full">
+                      <input
+                        ref={billingAddressLastNameRef}
+                        onChange={(e) => {
+                          billingAddressLastNameRef.current.style.borderBottom =
+                            "";
+                          setBillingAddressLastName(e.target.value);
+                          e.target.value == ""
+                            ? setBillingAddressLastNameIcon(false)
+                            : setBillingAddressLastNameIcon(true);
+                        }}
+                        value={billingAddressLastName}
+                        type="text"
+                        placeholder="Last Name *"
+                        className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                      />
+                      <button
+                        onClick={() => {
+                          setBillingAddressLastName("");
+                          setBillingAddressLastNameIcon(false);
+                        }}
+                        className={
+                          billingAddressLastNameIcon
+                            ? "absolute top-1/2 -translate-y-1/2 right-0"
+                            : "hidden"
+                        }
+                      >
+                        <p>
+                          <AiFillCloseCircle />
+                        </p>
+                      </button>
+                    </div>
+                  </div>
+                  {/* ----------------COUNTRY_INPUT------------ */}
+                  <div
+                    className={
+                      billingAddressCountryDropdownToggle
+                        ? "border-b border-[#D8D8D8] w-full h-max overflow-hidden rounded-md"
+                        : "border-b border-[#D8D8D8] w-full h-12 overflow-hidden rounded-md"
+                    }
+                  >
+                    <div
+                      className="relative h-12"
+                      onClick={() => {
+                        setBillingAddressCountryDropdownToggle(
+                          !billingAddressCountryDropdownToggle
+                        );
+                        setBillingAddressCountryDropdownIcon(
+                          !billingAddressCountryDropdownIcon
+                        );
+                      }}
+                    >
+                      <input
+                        type="text"
+                        disabled
+                        value={billingAddressSelectedCountry}
+                        className="w-full h-full bg-[white]"
+                        placeholder="Country *"
+                      />
+                      <h4
+                        className={
+                          billingAddressCountryDropdownIcon
+                            ? "absolute top-1/2 -translate-y-1/2 right-0 rotate-90 duration-200 text-sm"
+                            : "absolute top-1/2 -translate-y-1/2 right-0 -rotate-90 duration-200 text-sm"
+                        }
+                      >
+                        {
+                          navLinks.icons.find(
+                            (icon) => icon.name == "arrowDropdown"
+                          ).icon
+                        }
+                      </h4>
+                    </div>
+                    <div className="relative w-full mt-2">
+                      <input
+                        ref={billingAddressCountryRef}
+                        onChange={(e) => {
+                          billingAddressCountryRef.current.style.borderBottom =
+                            "";
+                          billingAddressSearchCountry(e.target.value);
+                          setBillingAddressCountry(e.target.value);
+                          e.target.value == ""
+                            ? setBillingAddressCountryIcon(false)
+                            : setBillingAddressCountryIcon(true);
+                        }}
+                        value={billingAddressCountry}
+                        type="text"
+                        placeholder="Search Country"
+                        className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                      />
+                      <button
+                        onClick={() => {
+                          setBillingAddressCountry("");
+                          setBillingAddressCountryIcon(false);
+                          setBillingAddressFoundedCountry(null);
+                        }}
+                        className={
+                          billingAddressCountryIcon
+                            ? "absolute top-1/2 -translate-y-1/2 right-0"
+                            : "hidden"
+                        }
+                      >
+                        <p>
+                          <AiFillCloseCircle />
+                        </p>
+                      </button>
+                    </div>
+                    {billingAddressFoundedCountry &&
+                      billingAddressFoundedCountry.map((country, key) => (
+                        <div
+                          key={key}
+                          onClick={() => {
+                            setBillingAddressCountryDropdownToggle(false);
+                            setBillingAddressCountryDropdownIcon(false);
+                            setBillingAddressSelectedCountry(
+                              country.name.common
+                            );
+                            setBillingAddressCountry("");
+                            setBillingAddressCountryIcon(false);
+                            setBillingAddressFoundedCountry(null);
+                          }}
+                          className="flex items-center justify-start w-full py-1 rounded-sm duration-200 hover:bg-whiteGray"
+                        >
+                          {country.name.common}
+                        </div>
+                      ))}
+                  </div>
+                  {/* COMPANY_NAME_INPUT */}
+                  <div className="relative w-full">
+                    <input
+                      ref={billingAddressCompanyNameRef}
+                      onChange={(e) => {
+                        billingAddressCompanyNameRef.current.style.borderBottom =
+                          "";
+                        setBillingAddressCompanyName(e.target.value);
+                        e.target.value == ""
+                          ? setBillingAddressCompanyNameIcon(false)
+                          : setBillingAddressCompanyNameIcon(true);
+                      }}
+                      value={billingAddressCompanyName}
+                      type="text"
+                      placeholder="Company Name"
+                      className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                    />
+                    <button
+                      onClick={() => {
+                        setBillingAddressCompanyName("");
+                        setBillingAddressCompanyNameIcon(false);
+                      }}
+                      className={
+                        billingAddressCompanyNameIcon
+                          ? "absolute top-1/2 -translate-y-1/2 right-0"
+                          : "hidden"
+                      }
+                    >
+                      <p>
+                        <AiFillCloseCircle />
+                      </p>
+                    </button>
+                  </div>
+                  {/* STREET_ADDRESS_INPUT */}
+                  <div className="relative w-full">
+                    <input
+                      ref={billingAddressStreetAddressRef}
+                      onChange={(e) => {
+                        billingAddressStreetAddressRef.current.style.borderBottom =
+                          "";
+                        setBillingAddressStreetAddress(e.target.value);
+                        e.target.value == ""
+                          ? setBillingAddressStreetAddressIcon(false)
+                          : setBillingAddressStreetAddressIcon(true);
+                      }}
+                      value={billingAddressStreetAddress}
+                      type="text"
+                      placeholder="Street Address *"
+                      className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                    />
+                    <button
+                      onClick={() => {
+                        setBillingAddressStreetAddress("");
+                        setBillingAddressStreetAddressIcon(false);
+                      }}
+                      className={
+                        billingAddressStreetAddressIcon
+                          ? "absolute top-1/2 -translate-y-1/2 right-0"
+                          : "hidden"
+                      }
+                    >
+                      <p>
+                        <AiFillCloseCircle />
+                      </p>
+                    </button>
+                  </div>
+                  {/* POST_CODE_INPUT */}
+                  <div className="relative w-full">
+                    <input
+                      ref={billingAddressPostCodeRef}
+                      onChange={(e) => {
+                        billingAddressPostCodeRef.current.style.borderBottom =
+                          "";
+                        setBillingAddressPostCode(e.target.value);
+                        e.target.value == ""
+                          ? setBillingAddressPostCodeIcon(false)
+                          : setBillingAddressPostCodeIcon(true);
+                      }}
+                      value={billingAddressPostCode}
+                      type="text"
+                      placeholder="Postcode / ZIP *"
+                      className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                    />
+                    <button
+                      onClick={() => {
+                        setBillingAddressPostCode("");
+                        setBillingAddressPostCodeIcon(false);
+                      }}
+                      className={
+                        billingAddressPostCodeIcon
+                          ? "absolute top-1/2 -translate-y-1/2 right-0"
+                          : "hidden"
+                      }
+                    >
+                      <p>
+                        <AiFillCloseCircle />
+                      </p>
+                    </button>
+                  </div>
+                  {/*CITY_INPUT */}
+                  <div className="relative w-full">
+                    <input
+                      ref={billingAddressCityRef}
+                      onChange={(e) => {
+                        billingAddressCityRef.current.style.borderBottom = "";
+                        setBillingAddressCity(e.target.value);
+                        e.target.value == ""
+                          ? setBillingAddressCityIcon(false)
+                          : setBillingAddressCityIcon(true);
+                      }}
+                      value={billingAddressCity}
+                      type="text"
+                      placeholder="Town / City *"
+                      className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                    />
+                    <button
+                      onClick={() => {
+                        setBillingAddressCity("");
+                        setBillingAddressCityIcon(false);
+                      }}
+                      className={
+                        billingAddressCityIcon
+                          ? "absolute top-1/2 -translate-y-1/2 right-0"
+                          : "hidden"
+                      }
+                    >
+                      <p>
+                        <AiFillCloseCircle />
+                      </p>
+                    </button>
+                  </div>
+                  {/*PHONE_INPUT */}
+                  <div className="relative w-full">
+                    <input
+                      ref={billingAddressPhoneRef}
+                      onChange={(e) => {
+                        billingAddressPhoneRef.current.style.borderBottom = "";
+                        setBillingAddressPhone(e.target.value);
+                        e.target.value == ""
+                          ? setBillingAddressPhoneIcon(false)
+                          : setBillingAddressPhoneIcon(true);
+                      }}
+                      value={billingAddressPhone}
+                      type="text"
+                      placeholder="Phone *"
+                      className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                    />
+                    <button
+                      onClick={() => {
+                        setBillingAddressPhone("");
+                        setBillingAddressPhoneIcon(false);
+                      }}
+                      className={
+                        billingAddressPhoneIcon
+                          ? "absolute top-1/2 -translate-y-1/2 right-0"
+                          : "hidden"
+                      }
+                    >
+                      <p>
+                        <AiFillCloseCircle />
+                      </p>
+                    </button>
+                  </div>
+                  {/*EMAIL_INPUT */}
+                  <div className="relative w-full">
+                    <input
+                      ref={billingAddressEmailRef}
+                      onChange={(e) => {
+                        billingAddressEmailRef.current.style.borderBottom = "";
+                        setBillingAddressEmail(e.target.value);
+                        e.target.value == ""
+                          ? setBillingAddressEmailIcon(false)
+                          : setBillingAddressEmailIcon(true);
+                      }}
+                      value={billingAddressEmail}
+                      type="text"
+                      placeholder="Email *"
+                      className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                    />
+                    <button
+                      onClick={() => {
+                        setBillingAddressEmail("");
+                        setBillingAddressEmailIcon(false);
+                      }}
+                      className={
+                        billingAddressEmailIcon
+                          ? "absolute top-1/2 -translate-y-1/2 right-0"
+                          : "hidden"
+                      }
+                    >
+                      <p>
+                        <AiFillCloseCircle />
+                      </p>
+                    </button>
+                  </div>
+                  <button
+                    onClick={updateBillingAddressFunction}
+                    id="btn-border-dark"
+                    className="w-full py-1 md:w-1/2"
+                  >
+                    {billingAddressSaveChangesButtonText}
+                  </button>
+                </motion.div>
+              )}
+            </div>
+            <div className="flex flex-col gap-2 w-full md:w-[400px] lg:w-[450px] xl:w-[500px]">
+              <h4 className="text-lg font-bold">Shipping address</h4>
+              <div className="flex flex-col gap-2 w-full">
+                <h5
+                  onClick={() => {
+                    setShippingAddressToggle(!shippingAddressToggle);
+                    setBillingAddressToggle(false);
+                  }}
+                  className="font-bold"
+                >
+                  ADD
+                </h5>
+                <p className={shippingAddressToggle ? "hidden" : ""}>
+                  You have not set up this type of address yet
+                </p>
+              </div>
+              {shippingAddressToggle && (
+                <motion.div
+                  variants={introAnimation}
+                  initial="hidden"
+                  animate="visible"
+                  className="flex flex-col w-full gap-5 md:gap-7"
+                >
+                  <div className="flex flex-col w-full gap-5 md:flex-row md:gap-2">
+                    {/* FIRST_NAME_INPUT */}
+                    <div className="relative w-full">
+                      <input
+                        ref={shippingAddressFirstNameRef}
+                        onChange={(e) => {
+                          shippingAddressFirstNameRef.current.style.borderBottom =
+                            "";
+                          setShippingAddressFirstName(e.target.value);
+                          e.target.value == ""
+                            ? setShippingAddressFirstNameIcon(false)
+                            : setShippingAddressFirstNameIcon(true);
+                        }}
+                        value={shippingAddressFirstName}
+                        type="text"
+                        placeholder="First Name *"
+                        className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                      />
+                      <button
+                        onClick={() => {
+                          setShippingAddressFirstName("");
+                          setShippingAddressFirstNameIcon(false);
+                        }}
+                        className={
+                          shippingAddressFirstNameIcon
+                            ? "absolute top-1/2 -translate-y-1/2 right-0"
+                            : "hidden"
+                        }
+                      >
+                        <p>
+                          <AiFillCloseCircle />
+                        </p>
+                      </button>
+                    </div>
+                    {/* LAST_NAME_INPUT */}
+                    <div className="relative w-full">
+                      <input
+                        ref={shippingAddressLastNameRef}
+                        onChange={(e) => {
+                          shippingAddressLastNameRef.current.style.borderBottom =
+                            "";
+                          setShippingAddressLastName(e.target.value);
+                          e.target.value == ""
+                            ? setShippingAddressLastNameIcon(false)
+                            : setShippingAddressLastNameIcon(true);
+                        }}
+                        value={shippingAddressLastName}
+                        type="text"
+                        placeholder="Last Name *"
+                        className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                      />
+                      <button
+                        onClick={() => {
+                          setShippingAddressLastName("");
+                          setShippingAddressLastNameIcon(false);
+                        }}
+                        className={
+                          shippingAddressLastNameIcon
+                            ? "absolute top-1/2 -translate-y-1/2 right-0"
+                            : "hidden"
+                        }
+                      >
+                        <p>
+                          <AiFillCloseCircle />
+                        </p>
+                      </button>
+                    </div>
+                  </div>
+                  {/* ----------------COUNTRY_INPUT------------ */}
+                  <div
+                    className={
+                      shippingAddressCountryDropdownToggle
+                        ? "border-b border-[#D8D8D8] w-full h-max overflow-hidden rounded-md"
+                        : "border-b border-[#D8D8D8] w-full h-12 overflow-hidden rounded-md"
+                    }
+                  >
+                    <div
+                      className="relative h-12"
+                      onClick={() => {
+                        setShippingAddressCountryDropdownToggle(
+                          !shippingAddressCountryDropdownToggle
+                        );
+                        setShippingAddressCountryDropdownIcon(
+                          !shippingAddressCountryDropdownIcon
+                        );
+                      }}
+                    >
+                      <input
+                        type="text"
+                        disabled
+                        value={shippingAddressSelectedCountry}
+                        className="w-full h-full bg-[white]"
+                        placeholder="Country *"
+                      />
+                      <h4
+                        className={
+                          shippingAddressCountryDropdownIcon
+                            ? "absolute top-1/2 -translate-y-1/2 right-0 rotate-90 duration-200 text-sm"
+                            : "absolute top-1/2 -translate-y-1/2 right-0 -rotate-90 duration-200 text-sm"
+                        }
+                      >
+                        {
+                          navLinks.icons.find(
+                            (icon) => icon.name == "arrowDropdown"
+                          ).icon
+                        }
+                      </h4>
+                    </div>
+                    <div className="relative w-full mt-2">
+                      <input
+                        ref={shippingAddressCountryRef}
+                        onChange={(e) => {
+                          shippingAddressCountryRef.current.style.borderBottom =
+                            "";
+                          shippingAddressSearchCountry(e.target.value);
+                          setShippingAddressCountry(e.target.value);
+                          e.target.value == ""
+                            ? setShippingAddressCountryIcon(false)
+                            : setShippingAddressCountryIcon(true);
+                        }}
+                        value={shippingAddressCountry}
+                        type="text"
+                        placeholder="Search Country"
+                        className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                      />
+                      <button
+                        onClick={() => {
+                          setShippingAddressCountry("");
+                          setShippingAddressCountryIcon(false);
+                          setShippingAddressFoundedCountry(null);
+                        }}
+                        className={
+                          shippingAddressCountryIcon
+                            ? "absolute top-1/2 -translate-y-1/2 right-0"
+                            : "hidden"
+                        }
+                      >
+                        <p>
+                          <AiFillCloseCircle />
+                        </p>
+                      </button>
+                    </div>
+                    {shippingAddressFoundedCountry &&
+                      shippingAddressFoundedCountry.map((country, key) => (
+                        <div
+                          key={key}
+                          onClick={() => {
+                            setShippingAddressCountryDropdownToggle(false);
+                            setShippingAddressCountryDropdownIcon(false);
+                            setShippingAddressSelectedCountry(
+                              country.name.common
+                            );
+                            setShippingAddressCountry("");
+                            setShippingAddressCountryIcon(false);
+                            setShippingAddressFoundedCountry(null);
+                          }}
+                          className="flex items-center justify-start w-full py-1 rounded-sm duration-200 hover:bg-whiteGray"
+                        >
+                          {country.name.common}
+                        </div>
+                      ))}
+                  </div>
+                  {/* COMPANY_NAME_INPUT */}
+                  <div className="relative w-full">
+                    <input
+                      ref={shippingAddressCompanyNameRef}
+                      onChange={(e) => {
+                        shippingAddressCompanyNameRef.current.style.borderBottom =
+                          "";
+                        setShippingAddressCompanyName(e.target.value);
+                        e.target.value == ""
+                          ? setShippingAddressCompanyNameIcon(false)
+                          : setShippingAddressCompanyNameIcon(true);
+                      }}
+                      value={shippingAddressCompanyName}
+                      type="text"
+                      placeholder="Company Name"
+                      className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                    />
+                    <button
+                      onClick={() => {
+                        setShippingAddressCompanyName("");
+                        setShippingAddressCompanyNameIcon(false);
+                      }}
+                      className={
+                        shippingAddressCompanyNameIcon
+                          ? "absolute top-1/2 -translate-y-1/2 right-0"
+                          : "hidden"
+                      }
+                    >
+                      <p>
+                        <AiFillCloseCircle />
+                      </p>
+                    </button>
+                  </div>
+                  {/* STREET_ADDRESS_INPUT */}
+                  <div className="relative w-full">
+                    <input
+                      ref={shippingAddressStreetAddressRef}
+                      onChange={(e) => {
+                        shippingAddressStreetAddressRef.current.style.borderBottom =
+                          "";
+                        setShippingAddressStreetAddress(e.target.value);
+                        e.target.value == ""
+                          ? setShippingAddressStreetAddressIcon(false)
+                          : setShippingAddressStreetAddressIcon(true);
+                      }}
+                      value={shippingAddressStreetAddress}
+                      type="text"
+                      placeholder="Street Address *"
+                      className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                    />
+                    <button
+                      onClick={() => {
+                        setShippingAddressStreetAddress("");
+                        setShippingAddressStreetAddressIcon(false);
+                      }}
+                      className={
+                        shippingAddressStreetAddressIcon
+                          ? "absolute top-1/2 -translate-y-1/2 right-0"
+                          : "hidden"
+                      }
+                    >
+                      <p>
+                        <AiFillCloseCircle />
+                      </p>
+                    </button>
+                  </div>
+                  {/* POST_CODE_INPUT */}
+                  <div className="relative w-full">
+                    <input
+                      ref={shippingAddressPostCodeRef}
+                      onChange={(e) => {
+                        shippingAddressPostCodeRef.current.style.borderBottom =
+                          "";
+                        setShippingAddressPostCode(e.target.value);
+                        e.target.value == ""
+                          ? setShippingAddressPostCodeIcon(false)
+                          : setShippingAddressPostCodeIcon(true);
+                      }}
+                      value={shippingAddressPostCode}
+                      type="text"
+                      placeholder="Postcode / ZIP *"
+                      className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                    />
+                    <button
+                      onClick={() => {
+                        setShippingAddressPostCode("");
+                        setShippingAddressPostCodeIcon(false);
+                      }}
+                      className={
+                        shippingAddressPostCodeIcon
+                          ? "absolute top-1/2 -translate-y-1/2 right-0"
+                          : "hidden"
+                      }
+                    >
+                      <p>
+                        <AiFillCloseCircle />
+                      </p>
+                    </button>
+                  </div>
+                  {/*CITY_INPUT */}
+                  <div className="relative w-full">
+                    <input
+                      ref={shippingAddressCityRef}
+                      onChange={(e) => {
+                        shippingAddressCityRef.current.style.borderBottom = "";
+                        setShippingAddressCity(e.target.value);
+                        e.target.value == ""
+                          ? setShippingAddressCityIcon(false)
+                          : setShippingAddressCityIcon(true);
+                      }}
+                      value={shippingAddressCity}
+                      type="text"
+                      placeholder="Town / City *"
+                      className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                    />
+                    <button
+                      onClick={() => {
+                        setShippingAddressCity("");
+                        setShippingAddressCityIcon(false);
+                      }}
+                      className={
+                        shippingAddressCityIcon
+                          ? "absolute top-1/2 -translate-y-1/2 right-0"
+                          : "hidden"
+                      }
+                    >
+                      <p>
+                        <AiFillCloseCircle />
+                      </p>
+                    </button>
+                  </div>
+                  {/*PHONE_INPUT */}
+                  <div className="relative w-full">
+                    <input
+                      ref={shippingAddressPhoneRef}
+                      onChange={(e) => {
+                        shippingAddressPhoneRef.current.style.borderBottom = "";
+                        setShippingAddressPhone(e.target.value);
+                        e.target.value == ""
+                          ? setShippingAddressPhoneIcon(false)
+                          : setShippingAddressPhoneIcon(true);
+                      }}
+                      value={shippingAddressPhone}
+                      type="text"
+                      placeholder="Phone *"
+                      className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                    />
+                    <button
+                      onClick={() => {
+                        setShippingAddressPhone("");
+                        setShippingAddressPhoneIcon(false);
+                      }}
+                      className={
+                        shippingAddressPhoneIcon
+                          ? "absolute top-1/2 -translate-y-1/2 right-0"
+                          : "hidden"
+                      }
+                    >
+                      <p>
+                        <AiFillCloseCircle />
+                      </p>
+                    </button>
+                  </div>
+                  {/*EMAIL_INPUT */}
+                  <div className="relative w-full">
+                    <input
+                      ref={shippingAddressEmailRef}
+                      onChange={(e) => {
+                        shippingAddressEmailRef.current.style.borderBottom = "";
+                        setShippingAddressEmail(e.target.value);
+                        e.target.value == ""
+                          ? setShippingAddressEmailIcon(false)
+                          : setShippingAddressEmailIcon(true);
+                      }}
+                      value={shippingAddressEmail}
+                      type="text"
+                      placeholder="Email *"
+                      className="border-b border-[#D8D8D8] outline-none w-full py-1"
+                    />
+                    <button
+                      onClick={() => {
+                        setShippingAddressEmail("");
+                        setShippingAddressEmailIcon(false);
+                      }}
+                      className={
+                        shippingAddressEmail
+                          ? "absolute top-1/2 -translate-y-1/2 right-0"
+                          : "hidden"
+                      }
+                    >
+                      <p>
+                        <AiFillCloseCircle />
+                      </p>
+                    </button>
+                  </div>
+                  <button
+                    onClick={updateShippingAddressFunction}
+                    id="btn-border-dark"
+                    className="w-full py-1 md:w-1/2"
+                  >
+                    {shippingAddressSaveChangesButtonText}
+                  </button>
+                </motion.div>
+              )}
+            </div>
+          </div>
+        </motion.div>
       ) : profilePageTabValue == 4 ? (
         <motion.form
           onSubmit={accountDetailsFormSubmitted}

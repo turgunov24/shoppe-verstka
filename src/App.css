@@ -62,12 +62,12 @@ span {
 
 /* scrollbar */
 ::-webkit-scrollbar{
-  width: 5px;
+  width: 2px;
 }
 ::-webkit-scrollbar-track{
   background-color: #fff;
 }
 ::-webkit-scrollbar-thumb{
-  background-color: var(--text-gray);
+  background-color: var(--text-white);
   border-radius: 10px;
 }

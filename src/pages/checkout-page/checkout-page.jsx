@@ -152,7 +152,6 @@ function CheckoutPage() {
     cashOnDeliveryRef,
     paypalRef,
   ]);
-  console.log(orders);
   //POST
   const updateData = async () => {
     orders.sort((a, b) => a.orderNumber - b.orderNumber);

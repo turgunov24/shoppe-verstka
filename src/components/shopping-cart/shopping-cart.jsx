@@ -6,12 +6,7 @@ import { CircularProgress } from "@mui/material";
 //additional
 import "./shopping-cart.css";
 import { navLinks } from "../../data/navbar-data/navLinks";
-import {
-  getDocs,
-  collection,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
+import { getDocs, collection, doc, updateDoc } from "firebase/firestore";
 import { dataBase } from "../../data/firebase/firebase-setup";
 
 function ShoppingCart({ toggle, setToggle }) {
@@ -24,7 +19,7 @@ function ShoppingCart({ toggle, setToggle }) {
   //get
   const getData = async () => {
     const data = await getDocs(usersCollection);
-    setUsersList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    await setUsersList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     setShoppingBagForCompare(
       data.docs
         .map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -32,11 +27,28 @@ function ShoppingCart({ toggle, setToggle }) {
           (user) => user.email == JSON.parse(localStorage.getItem("user")).email
         ).shoppingbag
     );
-
+  };
+  //delete
+  const [deletingItemsIndicator, setDeletingItemsIndicator] = useState(false);
+  const deleteData = async (id) => {
+    setDeletingItemsIndicator(true);
+    const userDoc = doc(
+      dataBase,
+      "login-base",
+      JSON.parse(localStorage.getItem("user")).id
+    );
+    await updateDoc(userDoc, {
+      shoppingbag: shoppingBag.filter((product) => product.productId != id),
+    });
+    await getData();
+    setDeletingItemsIndicator(false);
   };
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    toggle && getData();
+  }, [toggle]);
   useEffect(() => {
     if (usersList) {
       setShoppingBag(
@@ -108,9 +120,9 @@ function ShoppingCart({ toggle, setToggle }) {
         shoppingBag.length == 0 ? (
           <p>no items</p>
         ) : (
-          <div className="flex flex-col items-start gap-1 w-full">
+          <div className="flex flex-col items-start gap-1 w-full overflow-hidden">
             <p>{shoppingBag.length} items</p>
-            <div className="flex flex-col gap-5 w-full overflow-y-scroll">
+            <div className="flex flex-col gap-5 w-full h-full overflow-y-scroll pb-40 pt-3">
               {shoppingBag
                 .sort((a, b) => a.productId - b.productId)
                 .map((product, index) => (
@@ -155,7 +167,7 @@ function ShoppingCart({ toggle, setToggle }) {
                       </div>
                     </div>
                     <div
-                      // onClick={() => deleteData(product.productId)}
+                      onClick={() => deleteData(product.productId)}
                       className="font-bold ml-auto"
                     >
                       {
@@ -172,7 +184,7 @@ function ShoppingCart({ toggle, setToggle }) {
         <CircularProgress />
       )}
       {shoppingBag && shoppingBag.length != 0 && (
-        <div className="absolute bottom-0 left-0 flex flex-col items-center w-full py-5 px-3 gap-4 border border-[#D8D8D8] md:px-5">
+        <div className="absolute bottom-0 left-0 flex flex-col items-center w-full bg-[#fff] py-5 px-3 gap-4 border border-[#D8D8D8] md:px-5">
           <div className="flex items-center justify-between w-full">
             <h6>Subtotal ({shoppingBag.length} items)</h6>
             <h6>$ {totalPrice}</h6>

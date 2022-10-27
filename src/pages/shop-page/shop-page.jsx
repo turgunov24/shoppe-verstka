@@ -79,16 +79,19 @@ function ShopPage() {
   };
   //shop-by
   useEffect(() => {
-    if (shopInputData != "Shop By") {
-      if (shopInputData == "Cheapest") {
-        // console.log(data.sort((a, b) => a.price < b.price));
-        console.log(1);
-      } else if (shopInputData == "Expensive") {
-        // console.log(data.sort((a, b) => a.price > b.price));
-        console.log(2);
-      }
-    } else {
+    if (shopInputData == "Shop By") {
       setData(products);
+    } else {
+      if (shopInputData == "Cheapest") {
+        let newData = [...data];
+        newData.sort((a, b) => a.price - b.price)
+        setData(newData)
+    
+      } else if (shopInputData == "Expensive") {
+        let newData = [...data];
+        newData.sort((a, b) => b.price - a.price)
+        setData(newData)
+      }
     }
   }, [shopInputData]);
   //range-input
@@ -215,7 +218,9 @@ function ShopPage() {
             </div>
             <h4
               onClick={() => {
-                setShopInputData("Cheapest");
+                setShopInputData(
+                  shopInputData == "Cheapest" ? "Shop By" : "Cheapest"
+                );
                 setShopDropdown(false);
                 setShopDropdownIcon(false);
               }}
@@ -225,11 +230,13 @@ function ShopPage() {
                   : "flex items-center px-3 h-11 opacity-0 hover:bg-[#D8D8D8] duration-300"
               }
             >
-              Cheapest
+              {shopInputData == "Cheapest" ? "All" : "Cheapest"}
             </h4>
             <h4
               onClick={() => {
-                setShopInputData("Expensive");
+                setShopInputData(
+                  shopInputData == "Expensive" ? "Shop By" : "Expensive"
+                );
                 setShopDropdown(false);
                 setShopDropdownIcon(false);
               }}
@@ -239,7 +246,7 @@ function ShopPage() {
                   : "flex items-center px-3 h-11 opacity-0 hover:bg-[#D8D8D8] duration-300"
               }
             >
-              Expensive
+              {shopInputData == "Expensive" ? "All" : "Expensive"}
             </h4>
           </div>
           <div
@@ -277,7 +284,9 @@ function ShopPage() {
             </div>
             <h4
               onClick={() => {
-                setSortInputData("Newest");
+                setSortInputData(
+                  sortInputData == "Newest" ? "Sort By" : "Newest"
+                );
                 setSortDropdown(false);
                 setSortDropdownIcon(false);
               }}
@@ -287,11 +296,13 @@ function ShopPage() {
                   : "flex items-center px-3 h-11 opacity-0 hover:bg-[#D8D8D8] duration-300"
               }
             >
-              Newest
+              {sortInputData == "Newest" ? "All" : "Newest"}
             </h4>
             <h4
               onClick={() => {
-                setSortInputData("Oldest");
+                setSortInputData(
+                  sortInputData == "Oldest" ? "Sort By" : "Oldest"
+                );
                 setSortDropdown(false);
                 setSortDropdownIcon(false);
               }}
@@ -301,7 +312,7 @@ function ShopPage() {
                   : "flex items-center px-3 h-11 opacity-0 hover:bg-[#D8D8D8] duration-300"
               }
             >
-              Oldest
+              {sortInputData == "Oldest" ? "All" : "Oldest"}
             </h4>
           </div>
           <div className="flex flex-col gap-5 mt-5">

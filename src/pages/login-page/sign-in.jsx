@@ -51,20 +51,21 @@ function SignIn({ setIsLogged }) {
       setIsChecking("SEARCHING...");
       usersList.forEach((user) => {
         if (user.email == signInEmail && user.password == signInPassword) {
-          setIsChecking("SUCCESS");
-
           setTimeout(() => {
-            navigate("/home-page");
-
-            localStorage.setItem(
-              "user",
-              JSON.stringify(
-                usersList.find(
-                  (user) =>
-                    user.email == signInEmail && user.password == signInPassword
+            setIsChecking("SUCCESS");
+            setTimeout(() => {
+              navigate("/home-page");
+              localStorage.setItem(
+                "user",
+                JSON.stringify(
+                  usersList.find(
+                    (user) =>
+                      user.email == signInEmail &&
+                      user.password == signInPassword
+                  )
                 )
-              )
-            );
+              );
+            }, 1000);
           }, 1000);
         } else {
           setTimeout(() => {
@@ -130,7 +131,7 @@ function SignIn({ setIsLogged }) {
             e.target.value == ""
               ? setSignInPasswordIcon(false)
               : setSignInPasswordIcon(true);
-              isChecking == "NOT DEFINED" && setIsChecking("SIGN IN");
+            isChecking == "NOT DEFINED" && setIsChecking("SIGN IN");
             signInPasswordRef.current.style.borderBottom = "1px solid #D8D8D8";
           }}
           value={signInPassword}
