@@ -103,7 +103,7 @@ function ProfilePage() {
         JSON.stringify(
           usersList.find(
             (user) =>
-              user.email == JSON.parse(localStorage.getItem("user").email)
+              user.email == JSON.parse(localStorage.getItem("user")).email
           )
         )
       );
