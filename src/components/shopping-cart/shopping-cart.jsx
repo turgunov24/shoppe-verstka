@@ -20,13 +20,13 @@ function ShoppingCart({ toggle, setToggle }) {
   const getData = async () => {
     const data = await getDocs(usersCollection);
     await setUsersList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    setShoppingBagForCompare(
-      data.docs
-        .map((doc) => ({ ...doc.data(), id: doc.id }))
-        .find(
-          (user) => user.email == JSON.parse(localStorage.getItem("user")).email
-        ).shoppingbag
-    );
+    // setShoppingBagForCompare(
+    //   data.docs
+    //     .map((doc) => ({ ...doc.data(), id: doc.id }))
+    //     // .find(
+    //     //   (user) => user.email == JSON.parse(localStorage.getItem("user")).email
+    //     // ).shoppingbag
+    // );
   };
   //delete
   const [deletingItemsIndicator, setDeletingItemsIndicator] = useState(false);

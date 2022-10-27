@@ -21,8 +21,7 @@ function LoginPage() {
   );
   const navigate = useNavigate();
   return (
-    <section className="flex flex-col items-center w-full min-h-screen gap-10">
-      <Navbar />
+    <section className="border flex flex-col items-center w-full min-h-screen gap-10">
       <h4 className="font-bold text-xl mt-40 md:text-2xl">My account</h4>
       <div className="relative flex items-center w-full p-1 bg-gray1 rounded-lg overflow-hidden sm:w-80">
         <div
@@ -56,7 +55,6 @@ function LoginPage() {
         <Route path="/" element={<SignIn />} />
         <Route path="login/register" element={<Register />} />
       </Routes>
-      <Footer />
     </section>
   );
 }

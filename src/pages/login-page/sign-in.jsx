@@ -31,13 +31,13 @@ function SignIn({ setIsLogged }) {
   const [usersList, setUsersList] = useState(null);
   const [isChecking, setIsChecking] = useState("SIGN IN");
 
+  const getUsers = async () => {
+    setIsChecking("WAITING FOR CONNECT");
+    const data = await getDocs(usersCollection);
+    setUsersList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    setIsChecking("CHECKING");
+  };
   useEffect(() => {
-    const getUsers = async () => {
-      setIsChecking("WAITING FOR CONNECT");
-      const data = await getDocs(usersCollection);
-      setUsersList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      setIsChecking("CHECKING");
-    };
     getUsers();
   }, []);
   useEffect(() => {
