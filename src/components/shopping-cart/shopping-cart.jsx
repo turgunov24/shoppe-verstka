@@ -20,13 +20,15 @@ function ShoppingCart({ toggle, setToggle }) {
   const getData = async () => {
     const data = await getDocs(usersCollection);
     await setUsersList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    // setShoppingBagForCompare(
-    //   data.docs
-    //     .map((doc) => ({ ...doc.data(), id: doc.id }))
-    //     // .find(
-    //     //   (user) => user.email == JSON.parse(localStorage.getItem("user")).email
-    //     // ).shoppingbag
-    // );
+    setShoppingBagForCompare(
+      data.docs
+        .map((doc) => ({ ...doc.data(), id: doc.id }))
+        .find((user) =>
+          user.email == JSON.parse(localStorage.getItem("user")).email
+            ? JSON.parse(localStorage.getItem("user")).email
+            : null
+        ).shoppingbag
+    );
   };
   //delete
   const [deletingItemsIndicator, setDeletingItemsIndicator] = useState(false);
@@ -72,10 +74,10 @@ function ShoppingCart({ toggle, setToggle }) {
     setTotalPrice(Math.floor(price));
   };
   useEffect(() => {
-    if (shoppingBag) {
+    if (shoppingBagForCompare) {
       calculatePriceFunction();
     }
-  }, [shoppingBag]);
+  }, [shoppingBagForCompare]);
 
   //update-order-count-function
   const updateOrderCountFunction = (productId, action) => {
