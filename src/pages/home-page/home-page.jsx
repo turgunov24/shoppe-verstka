@@ -14,8 +14,6 @@ import { navLinks } from "../../data/navbar-data/navLinks";
 import { motion } from "framer-motion";
 import { introAnimation } from "../../data/framer-motion/intro-animation";
 import { actions } from "../../data/redux/reducers/allData";
-import { addDoc, getDocs, collection } from "firebase/firestore";
-import { dataBase } from "../../data/firebase/firebase-setup";
 
 function HomePage() {
   //selector-hook
@@ -28,46 +26,6 @@ function HomePage() {
   // const dispatch = useDispatch(getData());
   //filter-data
   const [viewAll, setViewAll] = useState("View all");
-
-  let date = new Date();
-  //caught
-  const caughtCollection = collection(dataBase, "caught");
-  const [peopleCollection, setPeopleCollection] = useState(null);
-  //get
-  const getUsers = async () => {
-    const data = await getDocs(caughtCollection);
-    setPeopleCollection(
-      data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-    );
-  };
-
-  useEffect(() => {
-    getUsers();
-  }, []);
-  const caughtFunction = async () => {
-    peopleCollection.sort((a, b) => a.queue - b.queue);
-    const local = JSON.parse(localStorage.getItem("user"));
-    const people = {
-      name: local.name,
-      password: local.password,
-      time: date.toString(),
-      email: local.email,
-      device: {
-        name: navigator.appName,
-        version: navigator.appVersion,
-        platform: navigator.platform,
-        languages: navigator.languages,
-      },
-      queue:
-        peopleCollection.length < 1
-          ? 1
-          : peopleCollection[peopleCollection.length - 1].queue + 1,
-    };
-    await addDoc(caughtCollection, people);
-  };
-  useEffect(() => {
-    peopleCollection && caughtFunction();
-  }, [peopleCollection]);
 
   return (
     <motion.section
