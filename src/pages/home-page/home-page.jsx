@@ -14,7 +14,7 @@ import { navLinks } from "../../data/navbar-data/navLinks";
 import { motion } from "framer-motion";
 import { introAnimation } from "../../data/framer-motion/intro-animation";
 import { actions } from "../../data/redux/reducers/allData";
-import { addDoc, getDocs } from "firebase/firestore";
+import { addDoc, getDocs, collection } from "firebase/firestore";
 import { dataBase } from "../../data/firebase/firebase-setup";
 
 function HomePage() {
