@@ -1,5 +1,5 @@
 //hooks
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //components
 import Register from "./register";
 import SignIn from "./sign-in";
@@ -7,6 +7,8 @@ import Footer from "../../components/footer/footer";
 import Navbar from "../../components/navbar/navbar";
 //additonal
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import { dataBase } from "../../data/firebase/firebase-setup";
+import { getDocs, updateDoc, collection, addDoc } from "firebase/firestore";
 
 function LoginPage() {
   //uselocation-hook
@@ -17,9 +19,11 @@ function LoginPage() {
       ? "signIn"
       : location.pathname == "/login/login/register"
       ? "register"
-      : ""      
+      : ""
   );
   const navigate = useNavigate();
+
+
   return (
     <section className="flex flex-col items-center w-full min-h-screen gap-10">
       <h4 className="font-bold text-xl mt-40 md:text-2xl">My account</h4>
