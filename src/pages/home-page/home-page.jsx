@@ -125,7 +125,13 @@ function HomePage() {
                           .icon
                       }
                     </h6>
-                    <h6 className="text-lg ">
+                    <h6
+                      onClick={() => {
+                        navigate("/product-page");
+                        dispatch(actions.selectedProduct(product.id));
+                      }}
+                      className="text-lg "
+                    >
                       {
                         navLinks.icons.find((icon) => icon.name == "eyeIcon")
                           .icon

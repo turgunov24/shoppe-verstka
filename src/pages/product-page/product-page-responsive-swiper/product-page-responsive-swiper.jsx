@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
 //hooks
-import { useSelector } from "react-redux";
-
+import React, { useRef, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+// Import Swiper React components
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -14,12 +14,14 @@ import { Pagination } from "swiper";
 //additional
 import { Swiper, SwiperSlide } from "swiper/react";
 import { navLinks } from "../../../data/navbar-data/navLinks";
+import { actions } from "../../../data/redux/reducers/allData";
 
 export default function ProductPageResponsiveSwiper() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   //hooks
   const allProduct = useSelector((state) => state.getAllData.data);
   const selectedProduct = useSelector((state) => state.getAllData.selectedData);
-
 
   return (
     <>
@@ -77,7 +79,15 @@ export default function ProductPageResponsiveSwiper() {
                   </h6>
                 </div>
               </div>
-              <h6 className="text-lg font-bold">
+              <h6
+                onClick={() => {
+                  dispatch(actions.selectedProduct(product.id));
+                  // window.scrollTo({
+                  //   top: 10,
+                  // });
+                }}
+                className="text-lg font-bold"
+              >
                 {product.title.split(" ", 1).map((title) => title)}
               </h6>
               <h5 className="text-sm">$ {product.price}</h5>

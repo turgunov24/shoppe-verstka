@@ -17,7 +17,7 @@ export const navLinks = {
   mobileNav: [
     {
       name: "Home",
-      to: "/",
+      to: "/home-page",
     },
     {
       name: "Shop",
